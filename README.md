@@ -1,6 +1,6 @@
 ![jot Logo](./Docs/jot-logo.jpg)
 
-[![CocoaPods Version](https://img.shields.io/cocoapods/v/jot.svg)](http://cocoadocs.org/docsets/jot) [![Build Status](https://travis-ci.org/IFTTT/jot.svg?branch=master)](https://travis-ci.org/IFTTT/jot) [![Coverage Status](https://coveralls.io/repos/IFTTT/jot/badge.svg)](https://coveralls.io/r/IFTTT/jot)
+[![CocoaPods Version](https://img.shields.io/cocoapods/v/jot.svg)](http://cocoadocs.org/docsets/jot) [![Build Status](https://travis-ci.org/IFTTT/jot.svg?branch=master)](https://travis-ci.org/IFTTT/jot) [![Coverage Status](https://coveralls.io/repos/IFTTT/jot/badge.svg?branch=master)](https://coveralls.io/r/IFTTT/jot?branch=master)
 
 `jot` is an easy way to add touch-controlled drawings and text to images in your iOS app.
 
