@@ -536,15 +536,17 @@ describe(@"JotDrawView", ^{
         
         UIImage *testImage = [UIImage imageNamed:@"JotTestImage.png"];
         UIImage *renderedImage = [drawView drawOnImage:testImage];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:renderedImage];
         
 #ifdef IS_RECORDING
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:renderedImage];
         // NOTE: We can't force the drawTouchMoved methods to be called an exact time interval
         // apart, which means the velocity will differ slightly each time this is run, and
         // the snapshot test will fail since it is not pixel-perfect. This records
         // an image for visual confirmation but does not automatically check whether it is valid
         // against a previous image.
         expect(imageView).notTo.recordSnapshotNamed(@"DrawAllTypesOnBackgroundImage");
+#else
+        expect(renderedImage).toNot.beNil();
 #endif
     });
     

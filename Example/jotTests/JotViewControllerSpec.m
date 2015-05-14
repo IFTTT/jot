@@ -1128,15 +1128,17 @@ describe(@"JotViewController", ^{
         
         UIImage *testImage = [UIImage imageNamed:@"JotTestImage.png"];
         UIImage *renderedImage = [jotViewController drawOnImage:testImage];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:renderedImage];
         
 #ifdef IS_RECORDING
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:renderedImage];
         // NOTE: We can't force the touchesMoved methods to be called an exact time interval
         // apart, which means the velocity will differ slightly each time this is run, and
         // the snapshot test will fail since it is not pixel-perfect. This records
         // an image for visual confirmation but does not automatically check whether it is valid
         // against a previous image.
         expect(imageView).notTo.recordSnapshotNamed(@"DrawAllTypesOnBackgroundImage");
+#else
+        expect(renderedImage).toNot.beNil();
 #endif
     });
     
@@ -1347,16 +1349,18 @@ describe(@"JotViewController", ^{
         
         jotViewController.state = JotViewStateEditingText;
         
+#ifdef IS_RECORDING
         waitUntil(^(DoneCallback done) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 // This varies slightly each time and is not pixel-perfect, so check this image manually
                 // instead of relying on snapshot tests.
-#ifdef IS_RECORDING
                 expect(containerViewController.view).notTo.recordSnapshotNamed(@"AdjustForKeyboardInEditMode");
-#endif
                 done();
             });
         });
+#else
+        expect(jotViewController.view).notTo.beNil();
+#endif
     });
     
     it(@"shows gradient text editing insets", ^{
