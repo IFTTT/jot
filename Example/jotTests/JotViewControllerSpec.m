@@ -1311,28 +1311,6 @@ describe(@"JotViewController", ^{
         expect(containerViewController.view).to.haveValidSnapshotNamed(@"DoesntDrawInDefaultMode");
     });
     
-    it(@"updates delegate when entering edit mode", ^{
-        UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        window.rootViewController = containerViewController;
-        [window makeKeyAndVisible];
-        
-        jotViewController.textString = @"The quick brown fox jumped over the lazy dog.";
-        jotViewController.textColor = [UIColor magentaColor];
-        jotViewController.font = [UIFont boldSystemFontOfSize:60.f];
-        jotViewController.fontSize = 70.f;
-        jotViewController.textEditingInsets = UIEdgeInsetsMake(20.f, 20.f, 20.f, 20.f);
-        jotViewController.clipBoundsToEditingInsets = YES;
-        jotViewController.textAlignment = NSTextAlignmentLeft;
-        [jotViewController.view layoutIfNeeded];
-        
-        id <JotViewControllerDelegate> mockDelegate = mockProtocol(@protocol(JotViewControllerDelegate));
-        jotViewController.delegate = mockDelegate;
-        
-        jotViewController.state = JotViewStateEditingText;
-        
-        [MKTVerify(mockDelegate) jotViewController:jotViewController isEditingText:YES];
-    });
-    
     afterEach(^{
         jotViewController = nil;
         containerViewController = nil;
