@@ -1335,34 +1335,6 @@ describe(@"JotViewController", ^{
         expect(containerViewController.view).to.haveValidSnapshotNamed(@"DoesntDrawInDefaultMode");
     });
     
-    it(@"adjust view to show keyboard in text edit mode", ^{
-        UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        window.rootViewController = containerViewController;
-        [window makeKeyAndVisible];
-        
-        jotViewController.textString = @"The quick brown fox jumped over the lazy dog.";
-        jotViewController.textColor = [UIColor magentaColor];
-        jotViewController.font = [UIFont boldSystemFontOfSize:60.f];
-        jotViewController.fontSize = 80.f;
-        jotViewController.textAlignment = NSTextAlignmentLeft;
-        [jotViewController.view layoutIfNeeded];
-        
-        jotViewController.state = JotViewStateEditingText;
-        
-#ifdef IS_RECORDING
-        waitUntil(^(DoneCallback done) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                // This varies slightly each time and is not pixel-perfect, so check this image manually
-                // instead of relying on snapshot tests.
-                expect(containerViewController.view).notTo.recordSnapshotNamed(@"AdjustForKeyboardInEditMode");
-                done();
-            });
-        });
-#else
-        expect(jotViewController.view).notTo.beNil();
-#endif
-    });
-    
     it(@"shows gradient text editing insets", ^{
         UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         window.rootViewController = containerViewController;
