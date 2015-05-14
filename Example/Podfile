@@ -1,0 +1,21 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+xcodeproj 'jot'
+
+platform :ios, '8.0'
+
+def install_pods
+  pod "jot", :path => "../jot.podspec"
+end
+
+target 'jot', :exclusive => true do
+  install_pods
+end
+
+target 'jotTests', :exclusive => true do
+  install_pods
+  pod 'Specta'
+  pod 'Expecta'
+  pod 'Expecta+Snapshots'
+  pod 'OCMockito'
+end

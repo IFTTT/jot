@@ -1,0 +1,570 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04B31307A7DA3A9B7DB9A5D9 /* libPods-jot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC3754114F9F8E417864260 /* libPods-jot.a */; };
+		FA0B14CF1AF30EB300441BBD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0B14CE1AF30EB300441BBD /* main.m */; };
+		FA0B14D21AF30EB300441BBD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0B14D11AF30EB300441BBD /* AppDelegate.m */; };
+		FA0B14DA1AF30EB300441BBD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA0B14D91AF30EB300441BBD /* Images.xcassets */; };
+		FA0B14F71AF30EE800441BBD /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0B14F61AF30EE800441BBD /* ExampleViewController.m */; };
+		FA0E74091AFBDC9B002EF483 /* JotTextEditViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0E74081AFBDC9B002EF483 /* JotTextEditViewSpec.m */; };
+		FA5A737C1AFC626400A6CB22 /* JotViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5A737B1AFC626400A6CB22 /* JotViewControllerSpec.m */; };
+		FA9118201AFA80CA00BBB7B5 /* JotTouchPointSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA91181F1AFA80CA00BBB7B5 /* JotTouchPointSpec.m */; };
+		FA9118241AFA872B00BBB7B5 /* UIImageJotSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9118231AFA872B00BBB7B5 /* UIImageJotSpec.m */; };
+		FA9118261AFA894300BBB7B5 /* JotDrawViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9118251AFA894300BBB7B5 /* JotDrawViewSpec.m */; };
+		FA9118301AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA91182F1AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m */; };
+		FA9FDFBD1AFAC37B00369A2B /* JotTestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = FA91182D1AFA97A200BBB7B5 /* JotTestImage.png */; };
+		FA9FDFC01AFACCFA00369A2B /* JotTextViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9FDFBF1AFACCFA00369A2B /* JotTextViewSpec.m */; };
+		FAD909731AF32D9100B34300 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAD909721AF32D9100B34300 /* fontawesome-webfont.ttf */; };
+		FAEA30E41AFA73BB00417AD8 /* JotTouchBezierSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA30E31AFA73BB00417AD8 /* JotTouchBezierSpec.m */; };
+		FB2ED3AF8A3C41D122C00E3F /* libPods-jotTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BBCFD1D5EA842A43214B92 /* libPods-jotTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA0B14E31AF30EB300441BBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA0B14C11AF30EB300441BBD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA0B14C81AF30EB300441BBD;
+			remoteInfo = jot;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		26DEB0E1AFA633F2F422712D /* Pods-jotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jotTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jotTests/Pods-jotTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3216AC229DFC6DBA9D11E219 /* Pods-jot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jot/Pods-jot.debug.xcconfig"; sourceTree = "<group>"; };
+		3970E2A1FA81233017CE8046 /* Pods-jot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jot.release.xcconfig"; path = "Pods/Target Support Files/Pods-jot/Pods-jot.release.xcconfig"; sourceTree = "<group>"; };
+		AFC3754114F9F8E417864260 /* libPods-jot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2BBCFD1D5EA842A43214B92 /* libPods-jotTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jotTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B30B5A19E6444BC72F752023 /* Pods-jotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jotTests/Pods-jotTests.release.xcconfig"; sourceTree = "<group>"; };
+		FA0B14C91AF30EB300441BBD /* jot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0B14CD1AF30EB300441BBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA0B14CE1AF30EB300441BBD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FA0B14D01AF30EB300441BBD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FA0B14D11AF30EB300441BBD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FA0B14D91AF30EB300441BBD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
+		FA0B14E21AF30EB300441BBD /* jotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0B14E71AF30EB300441BBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA0B14F51AF30EE800441BBD /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
+		FA0B14F61AF30EE800441BBD /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
+		FA0E74081AFBDC9B002EF483 /* JotTextEditViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotTextEditViewSpec.m; sourceTree = "<group>"; };
+		FA5A737B1AFC626400A6CB22 /* JotViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotViewControllerSpec.m; sourceTree = "<group>"; };
+		FA91181F1AFA80CA00BBB7B5 /* JotTouchPointSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotTouchPointSpec.m; sourceTree = "<group>"; };
+		FA9118231AFA872B00BBB7B5 /* UIImageJotSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageJotSpec.m; sourceTree = "<group>"; };
+		FA9118251AFA894300BBB7B5 /* JotDrawViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotDrawViewSpec.m; sourceTree = "<group>"; };
+		FA91182D1AFA97A200BBB7B5 /* JotTestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JotTestImage.png; sourceTree = "<group>"; };
+		FA91182F1AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotConstantWidthBezierSpec.m; sourceTree = "<group>"; };
+		FA9FDFBF1AFACCFA00369A2B /* JotTextViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotTextViewSpec.m; sourceTree = "<group>"; };
+		FAD909721AF32D9100B34300 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		FAEA30E31AFA73BB00417AD8 /* JotTouchBezierSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotTouchBezierSpec.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA0B14C61AF30EB300441BBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04B31307A7DA3A9B7DB9A5D9 /* libPods-jot.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA0B14DF1AF30EB300441BBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB2ED3AF8A3C41D122C00E3F /* libPods-jotTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D6B50332CCE372ECCFE8483 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFC3754114F9F8E417864260 /* libPods-jot.a */,
+				B2BBCFD1D5EA842A43214B92 /* libPods-jotTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B7FAE1FAB832097F83C46C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3216AC229DFC6DBA9D11E219 /* Pods-jot.debug.xcconfig */,
+				3970E2A1FA81233017CE8046 /* Pods-jot.release.xcconfig */,
+				26DEB0E1AFA633F2F422712D /* Pods-jotTests.debug.xcconfig */,
+				B30B5A19E6444BC72F752023 /* Pods-jotTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA0B14C01AF30EB300441BBD = {
+			isa = PBXGroup;
+			children = (
+				FA0B14CB1AF30EB300441BBD /* jot */,
+				FA0B14E51AF30EB300441BBD /* jotTests */,
+				FA0B14CA1AF30EB300441BBD /* Products */,
+				8B7FAE1FAB832097F83C46C2 /* Pods */,
+				3D6B50332CCE372ECCFE8483 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FA0B14CA1AF30EB300441BBD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B14C91AF30EB300441BBD /* jot.app */,
+				FA0B14E21AF30EB300441BBD /* jotTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA0B14CB1AF30EB300441BBD /* jot */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B14D01AF30EB300441BBD /* AppDelegate.h */,
+				FA0B14D11AF30EB300441BBD /* AppDelegate.m */,
+				FA0B14F51AF30EE800441BBD /* ExampleViewController.h */,
+				FA0B14F61AF30EE800441BBD /* ExampleViewController.m */,
+				FAD909711AF32D9100B34300 /* Resources */,
+				FA0B14CC1AF30EB300441BBD /* Supporting Files */,
+			);
+			path = jot;
+			sourceTree = "<group>";
+		};
+		FA0B14CC1AF30EB300441BBD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B14CD1AF30EB300441BBD /* Info.plist */,
+				FA0B14CE1AF30EB300441BBD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA0B14E51AF30EB300441BBD /* jotTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA91182F1AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m */,
+				FA9118251AFA894300BBB7B5 /* JotDrawViewSpec.m */,
+				FA0E74081AFBDC9B002EF483 /* JotTextEditViewSpec.m */,
+				FA9FDFBF1AFACCFA00369A2B /* JotTextViewSpec.m */,
+				FAEA30E31AFA73BB00417AD8 /* JotTouchBezierSpec.m */,
+				FA91181F1AFA80CA00BBB7B5 /* JotTouchPointSpec.m */,
+				FA5A737B1AFC626400A6CB22 /* JotViewControllerSpec.m */,
+				FA9118231AFA872B00BBB7B5 /* UIImageJotSpec.m */,
+				FA0B14E61AF30EB300441BBD /* Supporting Files */,
+			);
+			path = jotTests;
+			sourceTree = "<group>";
+		};
+		FA0B14E61AF30EB300441BBD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA91182A1AFA973C00BBB7B5 /* Test Images */,
+				FA0B14E71AF30EB300441BBD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA91182A1AFA973C00BBB7B5 /* Test Images */ = {
+			isa = PBXGroup;
+			children = (
+				FA91182D1AFA97A200BBB7B5 /* JotTestImage.png */,
+			);
+			path = "Test Images";
+			sourceTree = "<group>";
+		};
+		FAD909711AF32D9100B34300 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B14D91AF30EB300441BBD /* Images.xcassets */,
+				FAD909721AF32D9100B34300 /* fontawesome-webfont.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FA0B14C81AF30EB300441BBD /* jot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA0B14EC1AF30EB300441BBD /* Build configuration list for PBXNativeTarget "jot" */;
+			buildPhases = (
+				BE5897EC8AB48CF768483DC2 /* Check Pods Manifest.lock */,
+				FA0B14C51AF30EB300441BBD /* Sources */,
+				FA0B14C61AF30EB300441BBD /* Frameworks */,
+				FA0B14C71AF30EB300441BBD /* Resources */,
+				024CDD0AE71DDA9DE7DC7CBE /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = jot;
+			productName = jot;
+			productReference = FA0B14C91AF30EB300441BBD /* jot.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FA0B14E11AF30EB300441BBD /* jotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA0B14EF1AF30EB300441BBD /* Build configuration list for PBXNativeTarget "jotTests" */;
+			buildPhases = (
+				EBEB80312C124F934812B278 /* Check Pods Manifest.lock */,
+				FA0B14DE1AF30EB300441BBD /* Sources */,
+				FA0B14DF1AF30EB300441BBD /* Frameworks */,
+				FA0B14E01AF30EB300441BBD /* Resources */,
+				B0202FAB41E410BFCF2148AA /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA0B14E41AF30EB300441BBD /* PBXTargetDependency */,
+			);
+			name = jotTests;
+			productName = jotTests;
+			productReference = FA0B14E21AF30EB300441BBD /* jotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA0B14C11AF30EB300441BBD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Jot;
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = IFTTT;
+				TargetAttributes = {
+					FA0B14C81AF30EB300441BBD = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					FA0B14E11AF30EB300441BBD = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = FA0B14C81AF30EB300441BBD;
+					};
+				};
+			};
+			buildConfigurationList = FA0B14C41AF30EB300441BBD /* Build configuration list for PBXProject "jot" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FA0B14C01AF30EB300441BBD;
+			productRefGroup = FA0B14CA1AF30EB300441BBD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA0B14C81AF30EB300441BBD /* jot */,
+				FA0B14E11AF30EB300441BBD /* jotTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FA0B14C71AF30EB300441BBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA0B14DA1AF30EB300441BBD /* Images.xcassets in Resources */,
+				FA9FDFBD1AFAC37B00369A2B /* JotTestImage.png in Resources */,
+				FAD909731AF32D9100B34300 /* fontawesome-webfont.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA0B14E01AF30EB300441BBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		024CDD0AE71DDA9DE7DC7CBE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jot/Pods-jot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0202FAB41E410BFCF2148AA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jotTests/Pods-jotTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE5897EC8AB48CF768483DC2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EBEB80312C124F934812B278 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA0B14C51AF30EB300441BBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA0B14F71AF30EE800441BBD /* ExampleViewController.m in Sources */,
+				FA0B14D21AF30EB300441BBD /* AppDelegate.m in Sources */,
+				FA0B14CF1AF30EB300441BBD /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA0B14DE1AF30EB300441BBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAEA30E41AFA73BB00417AD8 /* JotTouchBezierSpec.m in Sources */,
+				FA5A737C1AFC626400A6CB22 /* JotViewControllerSpec.m in Sources */,
+				FA9118261AFA894300BBB7B5 /* JotDrawViewSpec.m in Sources */,
+				FA9FDFC01AFACCFA00369A2B /* JotTextViewSpec.m in Sources */,
+				FA9118201AFA80CA00BBB7B5 /* JotTouchPointSpec.m in Sources */,
+				FA0E74091AFBDC9B002EF483 /* JotTextEditViewSpec.m in Sources */,
+				FA9118301AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m in Sources */,
+				FA9118241AFA872B00BBB7B5 /* UIImageJotSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA0B14E41AF30EB300441BBD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA0B14C81AF30EB300441BBD /* jot */;
+			targetProxy = FA0B14E31AF30EB300441BBD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FA0B14EA1AF30EB300441BBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FA0B14EB1AF30EB300441BBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FA0B14ED1AF30EB300441BBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3216AC229DFC6DBA9D11E219 /* Pods-jot.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				INFOPLIST_FILE = jot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FA0B14EE1AF30EB300441BBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3970E2A1FA81233017CE8046 /* Pods-jot.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				INFOPLIST_FILE = jot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FA0B14F01AF30EB300441BBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26DEB0E1AFA633F2F422712D /* Pods-jotTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = jotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jot.app/jot";
+			};
+			name = Debug;
+		};
+		FA0B14F11AF30EB300441BBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B30B5A19E6444BC72F752023 /* Pods-jotTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = jotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jot.app/jot";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA0B14C41AF30EB300441BBD /* Build configuration list for PBXProject "jot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA0B14EA1AF30EB300441BBD /* Debug */,
+				FA0B14EB1AF30EB300441BBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA0B14EC1AF30EB300441BBD /* Build configuration list for PBXNativeTarget "jot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA0B14ED1AF30EB300441BBD /* Debug */,
+				FA0B14EE1AF30EB300441BBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA0B14EF1AF30EB300441BBD /* Build configuration list for PBXNativeTarget "jotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA0B14F01AF30EB300441BBD /* Debug */,
+				FA0B14F11AF30EB300441BBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA0B14C11AF30EB300441BBD /* Project object */;
+}
