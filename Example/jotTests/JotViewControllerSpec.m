@@ -733,30 +733,6 @@ describe(@"JotViewController", ^{
         expect(containerViewController.view).to.haveValidSnapshotNamed(@"PinchZoomPanGestureSingleLineText");
     });
     
-    it(@"switches to edit mode with tap gestures", ^{
-        [jotViewController.view layoutIfNeeded];
-        jotViewController.fitOriginalFontSizeToViewWidth = YES;
-        jotViewController.textString = @"The quick brown fox jumped over the lazy dog.";
-        jotViewController.fontSize = 60.f;
-        jotViewController.textAlignment = NSTextAlignmentLeft;
-        jotViewController.initialTextInsets = UIEdgeInsetsMake(20.f, 20.f, 20.f, 20.f);
-        [jotViewController.view layoutIfNeeded];
-        
-        UITapGestureRecognizer *tapGestureRecognizer = mock([UITapGestureRecognizer class]);
-        
-        [given([tapGestureRecognizer state])
-         willReturn:@(UIGestureRecognizerStateEnded)];
-        
-        [jotViewController handleTapGesture:tapGestureRecognizer];
-        
-        waitUntil(^(DoneCallback done) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                expect(jotViewController.state).to.equal(JotViewStateEditingText);
-                done();
-            });
-        });
-    });
-    
     it(@"handles pinch gestures for single line text", ^{
         [jotViewController.view layoutIfNeeded];
         
@@ -1335,114 +1311,6 @@ describe(@"JotViewController", ^{
         expect(containerViewController.view).to.haveValidSnapshotNamed(@"DoesntDrawInDefaultMode");
     });
     
-    it(@"shows gradient text editing insets", ^{
-        UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        window.rootViewController = containerViewController;
-        [window makeKeyAndVisible];
-        
-        jotViewController.textString = @"The quick brown fox jumped over the lazy dog.";
-        jotViewController.textColor = [UIColor magentaColor];
-        jotViewController.font = [UIFont boldSystemFontOfSize:60.f];
-        jotViewController.fontSize = 70.f;
-        jotViewController.textEditingInsets = UIEdgeInsetsMake(20.f, 20.f, 20.f, 20.f);
-        jotViewController.textAlignment = NSTextAlignmentLeft;
-        [jotViewController.view layoutIfNeeded];
-        
-        jotViewController.state = JotViewStateEditingText;
-        
-        waitUntil(^(DoneCallback done) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-#ifdef IS_RECORDING
-                expect(containerViewController.view).to.recordSnapshotNamed(@"ShowsGradientTextEditingInsets");
-#endif
-                expect(containerViewController.view).to.haveValidSnapshotNamed(@"ShowsGradientTextEditingInsets");
-                done();
-            });
-        });
-    });
-    
-    it(@"shows bottom gradient text editing insets", ^{
-        UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        window.rootViewController = containerViewController;
-        [window makeKeyAndVisible];
-        
-        jotViewController.textString = @"The quick brown fox jumped over the lazy dog.";
-        jotViewController.textColor = [UIColor magentaColor];
-        jotViewController.font = [UIFont boldSystemFontOfSize:60.f];
-        jotViewController.fontSize = 70.f;
-        jotViewController.textEditingInsets = UIEdgeInsetsMake(20.f, 20.f, 20.f, 20.f);
-        jotViewController.textAlignment = NSTextAlignmentLeft;
-        [jotViewController.view layoutIfNeeded];
-        
-        jotViewController.state = JotViewStateEditingText;
-        
-        waitUntil(^(DoneCallback done) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                jotViewController.textString = @"The quick brown dog jumped over the lazy fox.";
-#ifdef IS_RECORDING
-                expect(containerViewController.view).to.recordSnapshotNamed(@"ShowsBottomGradientTextEditingInsets");
-#endif
-                expect(containerViewController.view).to.haveValidSnapshotNamed(@"ShowsBottomGradientTextEditingInsets");
-                done();
-            });
-        });
-    });
-    
-    it(@"shows clipped text editing insets", ^{
-        UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        window.rootViewController = containerViewController;
-        [window makeKeyAndVisible];
-        
-        jotViewController.textString = @"The quick brown fox jumped over the lazy dog.";
-        jotViewController.textColor = [UIColor magentaColor];
-        jotViewController.font = [UIFont boldSystemFontOfSize:60.f];
-        jotViewController.fontSize = 70.f;
-        jotViewController.textEditingInsets = UIEdgeInsetsMake(20.f, 20.f, 20.f, 20.f);
-        jotViewController.clipBoundsToEditingInsets = YES;
-        jotViewController.textAlignment = NSTextAlignmentLeft;
-        [jotViewController.view layoutIfNeeded];
-        
-        jotViewController.state = JotViewStateEditingText;
-        
-        waitUntil(^(DoneCallback done) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-#ifdef IS_RECORDING
-                expect(containerViewController.view).to.recordSnapshotNamed(@"ShowsClippedTextEditingInsets");
-#endif
-                expect(containerViewController.view).to.haveValidSnapshotNamed(@"ShowsClippedTextEditingInsets");
-                done();
-            });
-        });
-    });
-    
-    it(@"shows bottom clipped text editing insets", ^{
-        UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        window.rootViewController = containerViewController;
-        [window makeKeyAndVisible];
-        
-        jotViewController.textString = @"The quick brown fox jumped over the lazy dog.";
-        jotViewController.textColor = [UIColor magentaColor];
-        jotViewController.font = [UIFont boldSystemFontOfSize:60.f];
-        jotViewController.fontSize = 70.f;
-        jotViewController.textEditingInsets = UIEdgeInsetsMake(20.f, 20.f, 20.f, 20.f);
-        jotViewController.clipBoundsToEditingInsets = YES;
-        jotViewController.textAlignment = NSTextAlignmentLeft;
-        [jotViewController.view layoutIfNeeded];
-        
-        jotViewController.state = JotViewStateEditingText;
-        
-        waitUntil(^(DoneCallback done) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                jotViewController.textString = @"The quick brown dog jumped over the lazy fox.";
-#ifdef IS_RECORDING
-                expect(containerViewController.view).to.recordSnapshotNamed(@"ShowsBottomClippedTextEditingInsets");
-#endif
-                expect(containerViewController.view).to.haveValidSnapshotNamed(@"ShowsBottomClippedTextEditingInsets");
-                done();
-            });
-        });
-    });
-    
     it(@"updates delegate when entering edit mode", ^{
         UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         window.rootViewController = containerViewController;
@@ -1463,33 +1331,6 @@ describe(@"JotViewController", ^{
         jotViewController.state = JotViewStateEditingText;
         
         [MKTVerify(mockDelegate) jotViewController:jotViewController isEditingText:YES];
-    });
-    
-    it(@"updates delegate when leaving edit mode", ^{
-        UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        window.rootViewController = containerViewController;
-        [window makeKeyAndVisible];
-        
-        jotViewController.textString = @"The quick brown fox jumped over the lazy dog.";
-        jotViewController.textColor = [UIColor magentaColor];
-        jotViewController.font = [UIFont boldSystemFontOfSize:60.f];
-        jotViewController.fontSize = 70.f;
-        jotViewController.textEditingInsets = UIEdgeInsetsMake(20.f, 20.f, 20.f, 20.f);
-        jotViewController.clipBoundsToEditingInsets = YES;
-        jotViewController.textAlignment = NSTextAlignmentLeft;
-        [jotViewController.view layoutIfNeeded];
-        
-        jotViewController.state = JotViewStateEditingText;
-        
-        waitUntil(^(DoneCallback done) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                id <JotViewControllerDelegate> mockDelegate = mockProtocol(@protocol(JotViewControllerDelegate));
-                jotViewController.delegate = mockDelegate;
-                jotViewController.state  = JotViewStateText;
-                [MKTVerify(mockDelegate) jotViewController:jotViewController isEditingText:NO];
-                done();
-            });
-        });
     });
     
     afterEach(^{
