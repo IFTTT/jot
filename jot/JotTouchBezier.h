@@ -50,6 +50,11 @@
 @property (nonatomic, strong) UIColor *strokeColor;
 
 /**
+ *  YES if the line is a constant width, NO if variable width.
+ */
+@property (nonatomic, assign) BOOL constantWidth;
+
+/**
  *  Returns an instance of JotTouchBezier with the given stroke color.
  *
  *  @param color       The color to use for drawing the bezier path.
@@ -59,14 +64,14 @@
 + (instancetype)withColor:(UIColor *)color;
 
 /**
- *  Draws the JotTouchBezier in the current graphics context, using the 
+ *  Draws the JotTouchBezier in the current graphics context, using the
  *  strokeColor and transitioning from the start width to the end width
  *  along the length of the curve.
  */
 - (void)jotDrawBezier;
 
 /**
- *  Draws a single circle at the given point in the current graphics context, 
+ *  Draws a single circle at the given point in the current graphics context,
  *  using the current fillColor of the context and the given width.
  *
  *  @param point       The CGPoint to use as the center of the circle to be drawn.

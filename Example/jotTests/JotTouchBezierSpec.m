@@ -95,7 +95,7 @@ describe(@"JotTouchBezier", ^{
         expect(imageView).to.haveValidSnapshotNamed(@"AnotherVariableWidthBezierImage");
     });
     
-    it(@"draws a constant width cubic bezier curve", ^{
+    it(@"draws a constant width cubic bezier curve if velocity is constant", ^{
         
         bezier.startPoint = CGPointMake(0.f, 0.f);
         bezier.endPoint = CGPointMake(200.f, 100.f);
@@ -107,6 +107,32 @@ describe(@"JotTouchBezier", ^{
         
         bezier.strokeColor = [UIColor blueColor];
                 
+        CGSize imageSize = CGSizeMake(200.f, 100.f);
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 2.f);
+        [bezier jotDrawBezier];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+#ifdef IS_RECORDING
+        expect(imageView).to.recordSnapshotNamed(@"SameStartAndEndWidthBezierImage");
+#endif
+        expect(imageView).to.haveValidSnapshotNamed(@"SameStartAndEndWidthBezierImage");
+    });
+    
+    it(@"draws a constant width cubic bezier curve if constantwidth is true", ^{
+        
+        bezier.startPoint = CGPointMake(0.f, 0.f);
+        bezier.endPoint = CGPointMake(200.f, 100.f);
+        bezier.controlPoint1 = CGPointMake(122.f, 14.f);
+        bezier.controlPoint2 = CGPointMake(42.f, 77.f);
+        bezier.constantWidth = YES;
+        
+        bezier.startWidth = 4.f;
+        bezier.endWidth = 6.f;
+        
+        bezier.strokeColor = [UIColor blueColor];
+        
         CGSize imageSize = CGSizeMake(200.f, 100.f);
         UIGraphicsBeginImageContextWithOptions(imageSize, NO, 2.f);
         [bezier jotDrawBezier];

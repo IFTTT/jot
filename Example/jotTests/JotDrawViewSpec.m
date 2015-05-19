@@ -35,6 +35,12 @@ describe(@"JotDrawView", ^{
         [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(90.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(170.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(120.f, 70.f)];
         [drawView drawTouchEnded];
 #ifdef IS_RECORDING
         expect(drawView).to.recordSnapshotNamed(@"ConstantWidthBezierDrawing");
@@ -115,9 +121,15 @@ describe(@"JotDrawView", ^{
         [drawView drawTouchEnded];
         
         drawView.constantStrokeWidth = YES;
-        [drawView drawTouchBeganAtPoint:CGPointMake(60.f, 0.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(10.f, 150.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(20.f, 180.f)];
+        [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(90.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(170.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(120.f, 70.f)];
         [drawView drawTouchEnded];
         
 #ifdef IS_RECORDING
@@ -135,6 +147,12 @@ describe(@"JotDrawView", ^{
         [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(90.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(170.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(120.f, 70.f)];
         [drawView drawTouchEnded];
         [drawView clearDrawing];
 #ifdef IS_RECORDING
@@ -201,6 +219,12 @@ describe(@"JotDrawView", ^{
         [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(90.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(170.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(120.f, 70.f)];
         [drawView drawTouchEnded];
         
         [drawView clearDrawing];
@@ -215,13 +239,17 @@ describe(@"JotDrawView", ^{
         drawView.strokeColor = [UIColor magentaColor];
         [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(140.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(130.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
         [drawView drawTouchEnded];
         
         drawView.strokeColor = [UIColor cyanColor];
-        [drawView drawTouchBeganAtPoint:CGPointMake(100.f, 50.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(10.f, 40.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 0.f)];
+        [drawView drawTouchBeganAtPoint:CGPointMake(200.f, 0.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(180.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(200.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(20.f, 40.f)];
         [drawView drawTouchEnded];
 #ifdef IS_RECORDING
         expect(drawView).to.recordSnapshotNamed(@"ConstantWidthColorChangeBezierDrawing");
@@ -287,13 +315,17 @@ describe(@"JotDrawView", ^{
         drawView.strokeWidth = 10.f;
         [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(140.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(130.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
         [drawView drawTouchEnded];
         
         drawView.strokeWidth = 4.f;
-        [drawView drawTouchBeganAtPoint:CGPointMake(100.f, 50.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(10.f, 40.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 0.f)];
+        [drawView drawTouchBeganAtPoint:CGPointMake(200.f, 0.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(180.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(200.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(20.f, 40.f)];
         [drawView drawTouchEnded];
 #ifdef IS_RECORDING
         expect(drawView).to.recordSnapshotNamed(@"ConstantWidthWidthChangeBezierDrawing");
@@ -360,14 +392,18 @@ describe(@"JotDrawView", ^{
         drawView.strokeWidth = 10.f;
         [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(140.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(130.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
         [drawView drawTouchEnded];
         
         drawView.strokeColor = [UIColor cyanColor];
         drawView.strokeWidth = 4.f;
-        [drawView drawTouchBeganAtPoint:CGPointMake(100.f, 50.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(10.f, 40.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 0.f)];
+        [drawView drawTouchBeganAtPoint:CGPointMake(200.f, 0.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(180.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(200.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(20.f, 40.f)];
         [drawView drawTouchEnded];
         
         drawView.constantStrokeWidth = NO;
@@ -400,14 +436,18 @@ describe(@"JotDrawView", ^{
         drawView.strokeWidth = 10.f;
         [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(140.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(130.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
         [drawView drawTouchEnded];
         
         drawView.strokeColor = [UIColor cyanColor];
         drawView.strokeWidth = 4.f;
-        [drawView drawTouchBeganAtPoint:CGPointMake(100.f, 50.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(10.f, 40.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 0.f)];
+        [drawView drawTouchBeganAtPoint:CGPointMake(200.f, 0.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(180.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(200.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(20.f, 40.f)];
         [drawView drawTouchEnded];
         
         drawView.constantStrokeWidth = NO;
@@ -457,14 +497,18 @@ describe(@"JotDrawView", ^{
         drawView.strokeWidth = 10.f;
         [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(140.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(130.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
         [drawView drawTouchEnded];
         
         drawView.strokeColor = [UIColor cyanColor];
         drawView.strokeWidth = 4.f;
-        [drawView drawTouchBeganAtPoint:CGPointMake(100.f, 50.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(10.f, 40.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 0.f)];
+        [drawView drawTouchBeganAtPoint:CGPointMake(200.f, 0.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(180.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(200.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(20.f, 40.f)];
         [drawView drawTouchEnded];
         
         drawView.constantStrokeWidth = NO;
@@ -497,14 +541,18 @@ describe(@"JotDrawView", ^{
         drawView.strokeWidth = 10.f;
         [drawView drawTouchBeganAtPoint:CGPointMake(0.f, 0.f)];
         [drawView drawTouchMovedToPoint:CGPointMake(100.f, 150.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(140.f, 180.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(130.f, 170.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(40.f, 20.f)];
         [drawView drawTouchEnded];
         
         drawView.strokeColor = [UIColor cyanColor];
         drawView.strokeWidth = 4.f;
-        [drawView drawTouchBeganAtPoint:CGPointMake(100.f, 50.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(10.f, 40.f)];
-        [drawView drawTouchMovedToPoint:CGPointMake(100.f, 0.f)];
+        [drawView drawTouchBeganAtPoint:CGPointMake(200.f, 0.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(150.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(180.f, 100.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(200.f, 120.f)];
+        [drawView drawTouchMovedToPoint:CGPointMake(20.f, 40.f)];
         [drawView drawTouchEnded];
         
         drawView.constantStrokeWidth = NO;

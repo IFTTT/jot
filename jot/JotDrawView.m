@@ -9,7 +9,6 @@
 #import "JotDrawView.h"
 #import "JotTouchPoint.h"
 #import "JotTouchBezier.h"
-#import "JotConstantWidthBezier.h"
 #import "UIImage+Jot.h"
 
 CGFloat const kJotVelocityFilterWeight = 0.9f;
@@ -20,7 +19,6 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 
 @property (nonatomic, strong) UIImage *cachedImage;
 
-@property (nonatomic, strong) JotConstantWidthBezier *constantWidthBezier;
 @property (nonatomic, strong) NSMutableArray *pathsArray;
 
 @property (nonatomic, strong) JotTouchBezier *bezierPath;
@@ -66,8 +64,6 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     
     [self.pathsArray removeAllObjects];
     
-    self.constantWidthBezier = nil;
-    
     self.bezierPath = nil;
     self.pointsCounter = 0;
     [self.pointsArray removeAllObjects];
@@ -88,7 +84,6 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 {
     if (_constantStrokeWidth != constantStrokeWidth) {
         _constantStrokeWidth = constantStrokeWidth;
-        self.constantWidthBezier = nil;
         self.bezierPath = nil;
         [self.pointsArray removeAllObjects];
         self.pointsCounter = 0;
@@ -99,36 +94,32 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 
 - (void)drawTouchBeganAtPoint:(CGPoint)touchPoint
 {
-    if (self.constantStrokeWidth) {
-        [self.constantWidthBezier moveToPoint:touchPoint];
-    } else {
-        self.lastVelocity = self.initialVelocity;
-        self.lastWidth = self.strokeWidth;
-        self.pointsCounter = 0;
-        [self.pointsArray removeAllObjects];
-        [self.pointsArray addObject:[JotTouchPoint withPoint:touchPoint]];
-    }
+    self.lastVelocity = self.initialVelocity;
+    self.lastWidth = self.strokeWidth;
+    self.pointsCounter = 0;
+    [self.pointsArray removeAllObjects];
+    [self.pointsArray addObject:[JotTouchPoint withPoint:touchPoint]];
 }
 
 - (void)drawTouchMovedToPoint:(CGPoint)touchPoint
 {
-    if (self.constantStrokeWidth) {
-        [self.constantWidthBezier addLineToPoint:touchPoint];
-        [self setNeedsDisplay];
-    } else {
-        self.pointsCounter += 1;
-        [self.pointsArray addObject:[JotTouchPoint withPoint:touchPoint]];
+    self.pointsCounter += 1;
+    [self.pointsArray addObject:[JotTouchPoint withPoint:touchPoint]];
+    
+    if (self.pointsCounter == 4) {
         
-        if (self.pointsCounter == 4) {
-            
-            self.pointsArray[3] = [JotTouchPoint withPoint:CGPointMake(([self.pointsArray[2] CGPointValue].x + [self.pointsArray[4] CGPointValue].x)/2.f,
-                                                                         ([self.pointsArray[2] CGPointValue].y + [self.pointsArray[4] CGPointValue].y)/2.f)];
-            
-            self.bezierPath.startPoint = [self.pointsArray[0] CGPointValue];
-            self.bezierPath.endPoint = [self.pointsArray[3] CGPointValue];
-            self.bezierPath.controlPoint1 = [self.pointsArray[1] CGPointValue];
-            self.bezierPath.controlPoint2 = [self.pointsArray[2] CGPointValue];
-            
+        self.pointsArray[3] = [JotTouchPoint withPoint:CGPointMake(([self.pointsArray[2] CGPointValue].x + [self.pointsArray[4] CGPointValue].x)/2.f,
+                                                                   ([self.pointsArray[2] CGPointValue].y + [self.pointsArray[4] CGPointValue].y)/2.f)];
+        
+        self.bezierPath.startPoint = [self.pointsArray[0] CGPointValue];
+        self.bezierPath.endPoint = [self.pointsArray[3] CGPointValue];
+        self.bezierPath.controlPoint1 = [self.pointsArray[1] CGPointValue];
+        self.bezierPath.controlPoint2 = [self.pointsArray[2] CGPointValue];
+        
+        if (self.constantStrokeWidth) {
+            self.bezierPath.startWidth = self.strokeWidth;
+            self.bezierPath.endWidth = self.strokeWidth;
+        } else {
             CGFloat velocity = [(JotTouchPoint *)self.pointsArray[3] velocityFromPoint:(JotTouchPoint *)self.pointsArray[0]];
             velocity = (kJotVelocityFilterWeight * velocity) + ((1.f - kJotVelocityFilterWeight) * self.lastVelocity);
             
@@ -139,17 +130,17 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
             
             self.lastWidth = strokeWidth;
             self.lastVelocity = velocity;
-            
-            self.pointsArray[0] = self.pointsArray[3];
-            self.pointsArray[1] = self.pointsArray[4];
-            
-            [self drawBitmap];
-            
-            [self.pointsArray removeLastObject];
-            [self.pointsArray removeLastObject];
-            [self.pointsArray removeLastObject];
-            self.pointsCounter = 1;
         }
+        
+        self.pointsArray[0] = self.pointsArray[3];
+        self.pointsArray[1] = self.pointsArray[4];
+        
+        [self drawBitmap];
+        
+        [self.pointsArray removeLastObject];
+        [self.pointsArray removeLastObject];
+        [self.pointsArray removeLastObject];
+        self.pointsCounter = 1;
     }
 }
 
@@ -157,10 +148,8 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 {
     [self drawBitmap];
     
-    if (!self.constantStrokeWidth) {
-        self.lastVelocity = self.initialVelocity;
-        self.lastWidth = self.strokeWidth;
-    }
+    self.lastVelocity = self.initialVelocity;
+    self.lastWidth = self.strokeWidth;
 }
 
 #pragma mark - Drawing
@@ -172,23 +161,18 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     if (self.cachedImage) {
         [self.cachedImage drawAtPoint:CGPointZero];
     }
+
+    [self.bezierPath jotDrawBezier];
+    self.bezierPath = nil;
     
-    if (self.constantStrokeWidth) {
-        [self.constantWidthBezier jotDrawConstantWidthBezier];
-        self.constantWidthBezier = nil;
-    } else {
-        [self.bezierPath jotDrawBezier];
-        self.bezierPath = nil;
-        
-        if (self.pointsArray.count == 1) {
-            JotTouchPoint *touchPoint = [self.pointsArray firstObject];
-            touchPoint.strokeColor = self.strokeColor;
-            touchPoint.strokeWidth = 1.5f * [self strokeWidthForVelocity:1.f];
-            [self.pathsArray addObject:touchPoint];
-            [touchPoint.strokeColor setFill];
-            [JotTouchBezier jotDrawBezierPoint:[touchPoint CGPointValue]
-                                     withWidth:touchPoint.strokeWidth];
-        }
+    if (self.pointsArray.count == 1) {
+        JotTouchPoint *touchPoint = [self.pointsArray firstObject];
+        touchPoint.strokeColor = self.strokeColor;
+        touchPoint.strokeWidth = 1.5f * [self strokeWidthForVelocity:1.f];
+        [self.pathsArray addObject:touchPoint];
+        [touchPoint.strokeColor setFill];
+        [JotTouchBezier jotDrawBezierPoint:[touchPoint CGPointValue]
+                                 withWidth:touchPoint.strokeWidth];
     }
     
     self.cachedImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -199,12 +183,8 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 - (void)drawRect:(CGRect)rect
 {
     [self.cachedImage drawInRect:rect];
-    
-    if (self.constantStrokeWidth) {
-        [self.constantWidthBezier jotDrawConstantWidthBezier];
-    } else {
-        [self.bezierPath jotDrawBezier];
-    }
+
+    [self.bezierPath jotDrawBezier];
 }
 
 - (CGFloat)strokeWidthForVelocity:(CGFloat)velocity
@@ -217,21 +197,10 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     if (!_bezierPath) {
         _bezierPath = [JotTouchBezier withColor:self.strokeColor];
         [self.pathsArray addObject:_bezierPath];
+        _bezierPath.constantWidth = self.constantStrokeWidth;
     }
     
     return _bezierPath;
-}
-
-- (JotConstantWidthBezier *)constantWidthBezier
-{
-    if (!_constantWidthBezier) {
-        _constantWidthBezier = [JotConstantWidthBezier withStrokeWidth:self.strokeWidth
-                                                                 color:self.strokeColor];
-        
-        [self.pathsArray addObject:_constantWidthBezier];
-    }
-    
-    return _constantWidthBezier;
 }
 
 #pragma mark - Image Rendering
@@ -254,7 +223,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, scale);
     
     [backgroundImage drawInRect:CGRectMake(0.f, 0.f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))];
-
+    
     [self drawAllPaths];
     
     UIImage *drawnImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -265,9 +234,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 - (void)drawAllPaths
 {
     for (NSObject *path in self.pathsArray) {
-        if ([path isKindOfClass:[JotConstantWidthBezier class]]) {
-            [(JotConstantWidthBezier *)path jotDrawConstantWidthBezier];
-        } else if ([path isKindOfClass:[JotTouchBezier class]]) {
+        if ([path isKindOfClass:[JotTouchBezier class]]) {
             [(JotTouchBezier *)path jotDrawBezier];
         } else if ([path isKindOfClass:[JotTouchPoint class]]) {
             [[(JotTouchPoint *)path strokeColor] setFill];

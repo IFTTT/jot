@@ -17,7 +17,6 @@
 		FA9118201AFA80CA00BBB7B5 /* JotTouchPointSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA91181F1AFA80CA00BBB7B5 /* JotTouchPointSpec.m */; };
 		FA9118241AFA872B00BBB7B5 /* UIImageJotSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9118231AFA872B00BBB7B5 /* UIImageJotSpec.m */; };
 		FA9118261AFA894300BBB7B5 /* JotDrawViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9118251AFA894300BBB7B5 /* JotDrawViewSpec.m */; };
-		FA9118301AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA91182F1AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m */; };
 		FA9FDFBD1AFAC37B00369A2B /* JotTestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = FA91182D1AFA97A200BBB7B5 /* JotTestImage.png */; };
 		FA9FDFC01AFACCFA00369A2B /* JotTextViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9FDFBF1AFACCFA00369A2B /* JotTextViewSpec.m */; };
 		FAD909731AF32D9100B34300 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAD909721AF32D9100B34300 /* fontawesome-webfont.ttf */; };
@@ -58,7 +57,6 @@
 		FA9118231AFA872B00BBB7B5 /* UIImageJotSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageJotSpec.m; sourceTree = "<group>"; };
 		FA9118251AFA894300BBB7B5 /* JotDrawViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotDrawViewSpec.m; sourceTree = "<group>"; };
 		FA91182D1AFA97A200BBB7B5 /* JotTestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JotTestImage.png; sourceTree = "<group>"; };
-		FA91182F1AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotConstantWidthBezierSpec.m; sourceTree = "<group>"; };
 		FA9FDFBF1AFACCFA00369A2B /* JotTextViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotTextViewSpec.m; sourceTree = "<group>"; };
 		FAD909721AF32D9100B34300 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		FAEA30E31AFA73BB00417AD8 /* JotTouchBezierSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JotTouchBezierSpec.m; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 		FA0B14E51AF30EB300441BBD /* jotTests */ = {
 			isa = PBXGroup;
 			children = (
-				FA91182F1AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m */,
 				FA9118251AFA894300BBB7B5 /* JotDrawViewSpec.m */,
 				FA0E74081AFBDC9B002EF483 /* JotTextEditViewSpec.m */,
 				FA9FDFBF1AFACCFA00369A2B /* JotTextViewSpec.m */,
@@ -372,7 +369,6 @@
 				FA9FDFC01AFACCFA00369A2B /* JotTextViewSpec.m in Sources */,
 				FA9118201AFA80CA00BBB7B5 /* JotTouchPointSpec.m in Sources */,
 				FA0E74091AFBDC9B002EF483 /* JotTextEditViewSpec.m in Sources */,
-				FA9118301AFA98E200BBB7B5 /* JotConstantWidthBezierSpec.m in Sources */,
 				FA9118241AFA872B00BBB7B5 /* UIImageJotSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
