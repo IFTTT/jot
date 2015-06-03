@@ -6,6 +6,9 @@
 //
 //
 
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
 /**
  *  The possible states of the JotViewController
  */
@@ -27,7 +30,7 @@ typedef NS_ENUM(NSUInteger, JotViewState){
      */
     JotViewStateText,
     /**
-     *  The text editing state, where the contents of 
+     *  The text editing state, where the contents of
      *  the text string can be edited with the keyboard.
      */
     JotViewStateEditingText
@@ -44,8 +47,8 @@ typedef NS_ENUM(NSUInteger, JotViewState){
  *  and add it as a child of your view controller. Set the state of the
  *  JotViewController to switch between manipulating text and drawing.
  *
- *  @note You will be able to see your view controller's view through 
- *  the jot view, so you can display the jot view above either a colored 
+ *  @note You will be able to see your view controller's view through
+ *  the jot view, so you can display the jot view above either a colored
  *  background for a sketchpad/whiteboard-like interface, or above a photo
  *  for a photo annotation interface.
  */
@@ -63,7 +66,7 @@ typedef NS_ENUM(NSUInteger, JotViewState){
  *  to JotViewStateEditingText, and tapping the keyboard's Done button will automatically
  *  switch back to JotViewStateText.
  *
- *  @note The JotViewController's delegate will get updates when it enters and exits 
+ *  @note The JotViewController's delegate will get updates when it enters and exits
  *  text editing mode, in case you need to update your interface to reflect this.
  */
 @property (nonatomic, assign) JotViewState state;
@@ -107,7 +110,7 @@ typedef NS_ENUM(NSUInteger, JotViewState){
 @property (nonatomic, strong) UIColor *drawingColor;
 
 /**
- *  Sets the stroke width for drawing if constantStrokeWidth is true, or sets 
+ *  Sets the stroke width for drawing if constantStrokeWidth is true, or sets
  *  the base strokeWidth for variable drawing paths constantStrokeWidth is false.
  */
 @property (nonatomic, assign) CGFloat drawingStrokeWidth;
@@ -148,7 +151,7 @@ typedef NS_ENUM(NSUInteger, JotViewState){
 
 /**
  *  By default, clipBoundsToEditingInsets is false, and the text that extends
- *  beyond the insets of the text input view in the JotTextEditView will fade out with 
+ *  beyond the insets of the text input view in the JotTextEditView will fade out with
  *  a gradient to the edges of the JotTextEditView. If clipBoundsToEditingInsets is true,
  *  then the text will be clipped at the inset instead of fading out in the JotTextEditView.
  */
@@ -173,7 +176,7 @@ typedef NS_ENUM(NSUInteger, JotViewState){
 - (void)clearText;
 
 /**
- *  Overlays the drawing and text on the given background image at the full 
+ *  Overlays the drawing and text on the given background image at the full
  *  resolution of the image.
  *
  *  @param image The background image to draw on top of.
