@@ -359,6 +359,14 @@
     return YES;
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark - JotTextEditView Delegate
 
 - (void)jotTextEditViewFinishedEditingWithNewTextString:(NSString *)textString
