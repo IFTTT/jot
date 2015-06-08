@@ -332,7 +332,7 @@
 
 - (UIImage *)drawTextImageWithSize:(CGSize)size backgroundImage:(UIImage *)backgroundImage
 {
-    CGFloat scale = 2.f * (size.width / CGRectGetWidth(self.bounds));
+    CGFloat scale = size.width / CGRectGetWidth(self.bounds);
     
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, scale);
     
@@ -342,7 +342,9 @@
     
     UIImage *drawnImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return drawnImage;
+    return [UIImage imageWithCGImage:drawnImage.CGImage
+                               scale:1.f
+                         orientation:drawnImage.imageOrientation];
 }
 
 @end
