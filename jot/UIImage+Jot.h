@@ -6,7 +6,8 @@
 //
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 /**
  *  Private category to create single-color background images for

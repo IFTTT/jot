@@ -6,8 +6,8 @@
 //
 //
 
-@import Foundation;
-@import UIKit;
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 /**
  *  Private class to handle timestamped touch events for drawing
