@@ -159,7 +159,6 @@ NSString * const kSaveImageName = @"";
     } else if (self.jotViewController.state == JotViewStateText) {
         self.jotViewController.state = JotViewStateDrawing;
         self.jotViewController.drawingColor = [UIColor colorWithRed:((double)arc4random()/UINT32_MAX) green:((double)arc4random()/UINT32_MAX) blue:((double)arc4random()/UINT32_MAX) alpha:1.0];
-        self.jotViewController.drawingStrokeWidth = self.jotViewController.drawingStrokeWidth;
         [self.toggleDrawingButton setTitle:kTextImageName forState:UIControlStateNormal];
     }
 }
