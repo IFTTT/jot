@@ -192,6 +192,12 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     return self.strokeWidth - ((self.strokeWidth * (1.f - kJotRelativeMinStrokeWidth)) / (1.f + (CGFloat)pow((double)M_E, (double)(-((velocity - self.initialVelocity) / self.initialVelocity)))));
 }
 
+- (void)setStrokeColor:(UIColor *)strokeColor
+{
+    _strokeColor = strokeColor;
+    self.bezierPath = nil;
+}
+
 - (JotTouchBezier *)bezierPath
 {
     if (!_bezierPath) {
