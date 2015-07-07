@@ -1,4 +1,4 @@
-![jot Logo](./Docs/jot-logo.jpg)
+![jot Logo](./Docs/jotbanner.jpg)
 
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/jot.svg)](http://cocoadocs.org/docsets/jot) [![Build Status](https://travis-ci.org/IFTTT/jot.svg?branch=master)](https://travis-ci.org/IFTTT/jot) [![Coverage Status](https://coveralls.io/repos/IFTTT/jot/badge.svg?branch=master)](https://coveralls.io/r/IFTTT/jot?branch=master)
 
