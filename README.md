@@ -1,4 +1,4 @@
-[![Open Source at IFTTT](./Docs/open-source-ifttt.png)](http://ifttt.github.io)
+[![Open Source at IFTTT](http://ifttt.github.io/images/open-source-ifttt.svg)](http://ifttt.github.io)
 
 ![jot Logo](./Docs/jotbanner.jpg)
 
