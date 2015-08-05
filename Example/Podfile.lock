@@ -4,9 +4,9 @@ PODS:
     - Expecta (~> 0.3)
     - FBSnapshotTestCase (= 1.6)
   - FBSnapshotTestCase (1.6)
-  - jot (0.1.3):
+  - jot (0.1.4):
     - Masonry (~> 0.6.1)
-  - Masonry (0.6.1)
+  - Masonry (0.6.2)
   - OCHamcrest (4.1.1)
   - OCMockito (1.4.0):
     - OCHamcrest (~> 4.0)
@@ -27,10 +27,10 @@ SPEC CHECKSUMS:
   Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
   Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
   FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
-  jot: 86da410a8bd544860166d5617707f3b2a8f0e4a1
-  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  jot: 001e36711e8118fec8648e35df32b040c01ece8e
+  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
   OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
   Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.38.2
