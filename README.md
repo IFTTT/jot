@@ -37,7 +37,7 @@ Add an instance of `JotViewController` as a child of your view controller. Adjus
 
 ```objc
 #import "ExampleViewController.h"
-#import <jot.h>
+#import <jot/jot.h>
 
 @interface ExampleViewController ()
 @property (nonatomic, strong) JotViewController *jotViewController;

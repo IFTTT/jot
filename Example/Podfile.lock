@@ -1,16 +1,16 @@
 PODS:
-  - Expecta (0.4.2)
-  - Expecta+Snapshots (1.3.2):
-    - Expecta (~> 0.3)
-    - FBSnapshotTestCase (= 1.6)
-  - FBSnapshotTestCase (1.6)
+  - Expecta (1.0.2)
+  - Expecta+Snapshots (2.0.0):
+    - Expecta (~> 1.0)
+    - FBSnapshotTestCase/Core (~> 2.0.3)
+  - FBSnapshotTestCase/Core (2.0.3)
   - jot (0.1.5):
     - Masonry (~> 0.6.1)
   - Masonry (0.6.2)
   - OCHamcrest (4.1.1)
   - OCMockito (1.4.0):
     - OCHamcrest (~> 4.0)
-  - Specta (0.5.0)
+  - Specta (1.0.3)
 
 DEPENDENCIES:
   - Expecta
@@ -24,13 +24,13 @@ EXTERNAL SOURCES:
     :path: ../jot.podspec
 
 SPEC CHECKSUMS:
-  Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
-  Expecta+Snapshots: 40c5ec43b43da3bae957f14fed5dc9177d08ec8b
-  FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
+  Expecta: 54e8a3530add08f4f0208c111355eda7cde74a53
+  Expecta+Snapshots: 29b38dd695bc72a0ed2bea833937d78df41943ba
+  FBSnapshotTestCase: d0eeca6bf87958e088b254396ae66873f971cfb1
   jot: 0f5dc333defa6ad805d01adc3834b201c22510a7
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
   OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
-  Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
+  Specta: cf3e4188cf35375c3ee2cd03f8db8f1f4ef98234
 
 COCOAPODS: 0.38.2
