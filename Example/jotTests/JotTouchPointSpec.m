@@ -9,7 +9,7 @@
 #define EXP_SHORTHAND
 #include <Specta/Specta.h>
 #include <Expecta/Expecta.h>
-#import <JotTouchPoint.h>
+#import <jot/JotTouchPoint.h>
 #import <UIKit/UIKit.h>
 
 SpecBegin(JotTouchPoint)

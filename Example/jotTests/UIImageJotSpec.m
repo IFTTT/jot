@@ -13,7 +13,7 @@
 #include <Specta/Specta.h>
 #include <Expecta/Expecta.h>
 #include <Expecta+Snapshots/EXPMatchers+FBSnapshotTest.h>
-#import <UIImage+Jot.h>
+#import <jot/UIImage+Jot.h>
 
 SpecBegin(UIImageJot)
 

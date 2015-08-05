@@ -19,7 +19,7 @@
 #include <Specta/Specta.h>
 #include <Expecta/Expecta.h>
 #include <Expecta+Snapshots/EXPMatchers+FBSnapshotTest.h>
-#import <JotViewController.h>
+#import <jot/JotViewController.h>
 #import <UIKit/UIKit.h>
 
 @interface JotViewController ()

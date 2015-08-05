@@ -19,7 +19,7 @@
 #include <Specta/Specta.h>
 #include <Expecta/Expecta.h>
 #include <Expecta+Snapshots/EXPMatchers+FBSnapshotTest.h>
-#import <JotTextEditView.h>
+#import <jot/JotTextEditView.h>
 #import <UIKit/UIKit.h>
 
 @interface JotTextEditView () <UITextViewDelegate>

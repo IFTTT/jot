@@ -13,7 +13,7 @@
 #include <Specta/Specta.h>
 #include <Expecta/Expecta.h>
 #include <Expecta+Snapshots/EXPMatchers+FBSnapshotTest.h>
-#import <JotDrawView.h>
+#import <jot/JotDrawView.h>
 #import <UIKit/UIKit.h>
 
 SpecBegin(JotDrawView)

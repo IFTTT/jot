@@ -10,7 +10,7 @@
 #import "JotDrawView.h"
 #import "JotTextView.h"
 #import "JotTextEditView.h"
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 #import "UIImage+Jot.h"
 #import "JotDrawingContainer.h"
 

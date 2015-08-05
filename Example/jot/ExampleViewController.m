@@ -8,8 +8,8 @@
 
 #import "ExampleViewController.h"
 @import AssetsLibrary;
-#import <Masonry.h>
-#import <jot.h>
+#import <Masonry/Masonry.h>
+#import <jot/jot.h>
 
 NSString * const kPencilImageName = @"";
 NSString * const kTextImageName = @"";

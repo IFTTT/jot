@@ -13,7 +13,7 @@
 #include <Specta/Specta.h>
 #include <Expecta/Expecta.h>
 #include <Expecta+Snapshots/EXPMatchers+FBSnapshotTest.h>
-#import <JotTouchBezier.h>
+#import <jot/JotTouchBezier.h>
 #import <UIKit/UIKit.h>
 
 SpecBegin(JotTouchBezier)
