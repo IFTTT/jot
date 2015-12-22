@@ -1,13 +1,11 @@
-[![Open Source at IFTTT](http://ifttt.github.io/images/open-source-ifttt.svg)](http://ifttt.github.io)
+![VaryingDemo](./Docs/jotbanner.jpg)
 
-![jot Logo](./Docs/jotbanner.jpg)
-
-[![CocoaPods Version](https://img.shields.io/cocoapods/v/jot.svg)](http://cocoadocs.org/docsets/jot) [![Build Status](https://travis-ci.org/IFTTT/jot.svg?branch=master)](https://travis-ci.org/IFTTT/jot) [![Coverage Status](https://coveralls.io/repos/IFTTT/jot/badge.svg?branch=master)](https://coveralls.io/r/IFTTT/jot?branch=master)
+Forked from [IFTTT/jot](https://github.com/IFTTT/jot). 
 
 `jot` is an easy way to add touch-controlled drawings and text to images in your iOS app.
+Based on `jot`, I updated drawing code to make drawing more smoothly.
 
-![FastttCamera](./Docs/jot-demo.gif)
-
+![VaryingDemo](./Docs/varying_demo.png)
 ## What's `jot` for?
 ### Annotating Images
 `jot` is the easiest way to add annotations to images with a touch interface. You can draw arrows or circle important things, as well as add resizable, rotatable text captions, and easily save the notes on top of a image using `drawOnImage:`.
@@ -17,15 +15,6 @@
 
 ### Signatures
 `jot` is a great solution if you need to collect user signatures through a touch interface. Set the `drawingColor` to black, set the state to `JotViewStateDrawing`, and save the signature when the user is done by calling `renderImageOnColor:`.
-
-## Installation
-
-`jot` is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your `Podfile`:
-
-```
-pod "jot"
-```
 
 ## Example Project
 
