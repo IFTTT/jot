@@ -42,8 +42,7 @@ NSString * const kSaveImageName = @"";
         self.jotViewController.initialTextInsets = UIEdgeInsetsMake(6.f, 6.f, 6.f, 6.f);
         self.jotViewController.fitOriginalFontSizeToViewWidth = YES;
         self.jotViewController.textAlignment = NSTextAlignmentLeft;
-        self.jotViewController.drawingColor = [UIColor blackColor];
-        self.jotViewController.drawingStrokeWidth = 4.0;
+        self.jotViewController.drawingColor = [UIColor cyanColor];
         
         _saveButton = [UIButton new];
         self.saveButton.titleLabel.font = [UIFont fontWithName:@"FontAwesome" size:24.f];
