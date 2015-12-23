@@ -9,6 +9,11 @@
 #import "JotTouchBezier.h"
 
 NSUInteger const kJotDrawStepsPerBezier = 300;
+CGFloat const kJotBezierShadow = 0.65f;
+
+static inline CGFloat pointLength(const CGPoint point1, const CGPoint point2){
+    return sqrt(pow(point1.x - point2.x, 2) + pow(point1.y - point2.y, 2));
+}
 
 @implementation JotTouchBezier
 
@@ -34,11 +39,26 @@ NSUInteger const kJotDrawStepsPerBezier = 300;
     } else {
         [self.strokeColor setFill];
         
+        CGFloat minWidth = self.startWidth;
         CGFloat widthDelta = self.endWidth - self.startWidth;
         
-        for (NSUInteger i = 0; i < kJotDrawStepsPerBezier; i++) {
+        CGFloat length = pointLength(self.startPoint, self.controlPoint1)
+                        + pointLength(self.controlPoint1, self.controlPoint2)
+                        + pointLength(self.controlPoint2, self.endPoint);
+        
+        CGFloat drawSteps = MAX(MIN(length,kJotDrawStepsPerBezier),10);
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        if (!context) {
+            return;
+        }
+        
+        // Set shadow makes bezier path more smoothly
+        CGContextSetShadowWithColor(context, CGSizeMake(0, 0), kJotBezierShadow, self.strokeColor.CGColor);
+        
+        for (NSUInteger i = 0; i < drawSteps; i++) {
             
-            CGFloat t = ((CGFloat)i) / (CGFloat)kJotDrawStepsPerBezier;
+            CGFloat t = ((CGFloat)i) / (CGFloat)drawSteps;
             CGFloat tt = t * t;
             CGFloat ttt = tt * t;
             CGFloat u = 1.f - t;
@@ -56,8 +76,27 @@ NSUInteger const kJotDrawStepsPerBezier = 300;
             y += ttt * self.endPoint.y;
             
             CGFloat pointWidth = self.startWidth + (ttt * widthDelta);
+            minWidth = MIN(pointWidth, minWidth);
+            
             [self.class jotDrawBezierPoint:CGPointMake(x, y) withWidth:pointWidth];
         }
+        
+        // Draw a min width bezier, in case of drawSteps is not enough
+        CGFloat span = 0.0f;
+        CGPoint startPoint = CGPointMake(self.startPoint.x, self.startPoint.y + span);
+        CGPoint controlPoint1 = CGPointMake(self.controlPoint1.x, self.controlPoint1.y + span);
+        CGPoint controlPoint2 = CGPointMake(self.controlPoint2.x, self.controlPoint2.y + span);
+        CGPoint endPoint = CGPointMake(self.endPoint.x, self.endPoint.y + span);
+        
+        [self.strokeColor setStroke];
+        CGContextSetLineWidth(context, minWidth);
+        CGContextSetAllowsAntialiasing(context, true);
+        CGContextSetLineCap(context, kCGLineCapRound);
+        CGContextSetLineJoin(context, kCGLineJoinRound);
+        CGContextMoveToPoint(context, startPoint.x, startPoint.y);
+        CGContextAddCurveToPoint(context, controlPoint1.x, controlPoint1.y,
+                                 controlPoint2.x, controlPoint2.y, endPoint.x, endPoint.y);
+        CGContextStrokePath(context);
     }
 }
 

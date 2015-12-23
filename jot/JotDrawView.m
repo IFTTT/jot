@@ -15,6 +15,19 @@ CGFloat const kJotVelocityFilterWeight = 0.9f;
 CGFloat const kJotInitialVelocity = 220.f;
 CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 
+static inline CGRect calcRect(CGPoint p1,CGPoint p2, CGPoint p3, CGPoint p4){
+    CGFloat x1,y1,x2,y2,width,height;
+    x1 = MIN(MIN(p1.x, p2.x), MIN(p3.x, p4.x));
+    x2 = MAX(MAX(p1.x, p2.x), MAX(p3.x, p4.x));
+    
+    y1 = MIN(MIN(p1.y, p2.y), MIN(p3.y, p4.y));
+    y2 = MAX(MAX(p1.y, p2.y), MAX(p3.y, p4.y));
+    
+    width  = x2 - x1 + 15;
+    height = y2 - y1 + 15;
+    return CGRectMake(MAX(x1 - 10, 0), MAX(y1 - 10, 0),  width,  height);
+}
+
 @interface JotDrawView ()
 
 @property (nonatomic, strong) UIImage *cachedImage;
@@ -132,6 +145,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
             self.lastVelocity = velocity;
         }
         
+        
         self.pointsArray[0] = self.pointsArray[3];
         self.pointsArray[1] = self.pointsArray[4];
         
@@ -156,6 +170,8 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 
 - (void)drawBitmap
 {
+    CGRect rect = calcRect(self.bezierPath.startPoint, self.bezierPath.controlPoint1, self.bezierPath.controlPoint2, self.bezierPath.endPoint);
+    
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
     
     if (self.cachedImage) {
@@ -173,18 +189,21 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
         [touchPoint.strokeColor setFill];
         [JotTouchBezier jotDrawBezierPoint:[touchPoint CGPointValue]
                                  withWidth:touchPoint.strokeWidth];
+        
+        CGFloat pointWidth = touchPoint.strokeWidth;
+        CGPoint point = touchPoint.CGPointValue;
+        rect = CGRectMake(point.x - pointWidth, point.y - pointWidth, pointWidth * 2.f, pointWidth * 2.f);
     }
     
     self.cachedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    [self setNeedsDisplay];
+    
+    [self setNeedsDisplayInRect:rect];
 }
 
 - (void)drawRect:(CGRect)rect
 {
-    [self.cachedImage drawInRect:rect];
-
-    [self.bezierPath jotDrawBezier];
+    [self.cachedImage drawAtPoint:CGPointZero];
 }
 
 - (CGFloat)strokeWidthForVelocity:(CGFloat)velocity
