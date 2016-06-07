@@ -1,19 +1,15 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-xcodeproj 'JotDemo'
+project 'JotDemo'
 
 platform :ios, '8.0'
 
-def install_pods
+target 'JotDemo' do
   pod "jot", :path => "../jot.podspec"
 end
 
-target 'JotDemo', :exclusive => true do
-  install_pods
-end
-
-target 'JotDemoTests', :exclusive => true do
-  install_pods
+target 'JotDemoTests' do
+  inherit! :search_paths
   pod 'Specta'
   pod 'Expecta'
   pod 'Expecta+Snapshots'
