@@ -161,6 +161,11 @@ typedef NS_ENUM(NSUInteger, JotViewState){
 @property (nonatomic, strong, readonly) JotDrawingContainer *drawingContainer;
 
 /**
+ *  Undoes previous stroke
+ */
+- (void)undo;
+
+/**
  *  Clears all paths from the drawing in and sets the text to an empty string, giving a blank slate.
  */
 - (void)clearAll;

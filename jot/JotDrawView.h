@@ -42,6 +42,12 @@
  */
 @property (nonatomic, strong) UIColor *strokeColor;
 
+
+/**
+ *  Undos previous stroke.
+ */
+- (void)undoLastStroke;
+
 /**
  *  Clears all paths from the drawing, giving a blank slate.
  *
@@ -106,3 +112,4 @@
 - (UIImage *)renderDrawingWithSize:(CGSize)size;
 
 @end
+
