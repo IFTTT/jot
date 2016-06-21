@@ -42,7 +42,6 @@
  */
 @property (nonatomic, strong) UIColor *strokeColor;
 
-
 /**
  *  Undos previous stroke.
  */
@@ -112,4 +111,3 @@
 - (UIImage *)renderDrawingWithSize:(CGSize)size;
 
 @end
-

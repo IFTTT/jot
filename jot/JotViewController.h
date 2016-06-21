@@ -13,27 +13,27 @@
  *  The possible states of the JotViewController
  */
 typedef NS_ENUM(NSUInteger, JotViewState){
-    /**
-     *  The default state, which does not allow
-     *  any touch interactions.
-     */
-    JotViewStateDefault,
-    /**
-     *  The drawing state, where drawing with touch
-     *  gestures will create colored lines in the view.
-     */
-    JotViewStateDrawing,
-    /**
-     *  The text state, where pinch, pan, and rotate
-     *  gestures will manipulate the displayed text, and
-     *  a tap gesture will switch to text editing mode.
-     */
-    JotViewStateText,
-    /**
-     *  The text editing state, where the contents of
-     *  the text string can be edited with the keyboard.
-     */
-    JotViewStateEditingText
+	/**
+	 *  The default state, which does not allow
+	 *  any touch interactions.
+	 */
+	JotViewStateDefault,
+	/**
+	 *  The drawing state, where drawing with touch
+	 *  gestures will create colored lines in the view.
+	 */
+	JotViewStateDrawing,
+	/**
+	 *  The text state, where pinch, pan, and rotate
+	 *  gestures will manipulate the displayed text, and
+	 *  a tap gesture will switch to text editing mode.
+	 */
+	JotViewStateText,
+	/**
+	 *  The text editing state, where the contents of
+	 *  the text string can be edited with the keyboard.
+	 */
+	JotViewStateEditingText
 };
 
 @import UIKit;
