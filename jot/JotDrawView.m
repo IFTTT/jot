@@ -66,7 +66,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     
     self.cachedImage = nil;
 	
-    [self.strokeHistoryArray removeObjectAtIndex:self.strokeHistoryArray.count - 1];
+    [self.strokeHistoryArray removeLastObject];
     
     self.bezierPath = nil;
     self.pointsCounter = 0;
@@ -280,8 +280,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 
 - (void)drawAllPaths
 {
-	NSArray *all = self.allPaths;
-    for (NSObject *path in all) {
+	for (NSObject *path in self.allPaths) {
         if ([path isKindOfClass:[JotTouchBezier class]]) {
             [(JotTouchBezier *)path jotDrawBezier];
         } else if ([path isKindOfClass:[JotTouchPoint class]]) {
