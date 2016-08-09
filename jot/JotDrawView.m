@@ -19,7 +19,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 
 @property (nonatomic, strong) UIImage *cachedImage;
 
-@property (nonatomic, strong) NSMutableArray *pathsArray;
+@property (nonatomic, strong) NSMutableArray *strokeHistoryArray;
 
 @property (nonatomic, strong) JotTouchBezier *bezierPath;
 @property (nonatomic, strong) NSMutableArray *pointsArray;
@@ -40,8 +40,8 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
         
         _strokeWidth = 10.f;
         _strokeColor = [UIColor blackColor];
-        
-        _pathsArray = [NSMutableArray array];
+		
+        _strokeHistoryArray = [NSMutableArray array];
         
         _constantStrokeWidth = NO;
         
@@ -58,11 +58,35 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 
 #pragma mark - Undo
 
+- (void)undoLastStroke
+{
+    if (self.strokeHistoryArray.count == 0) {
+        return;
+    }
+    
+    self.cachedImage = nil;
+	
+    [self.strokeHistoryArray removeLastObject];
+    
+    self.bezierPath = nil;
+    self.pointsCounter = 0;
+    [self.pointsArray removeAllObjects];
+    self.lastVelocity = self.initialVelocity;
+    self.lastWidth = self.strokeWidth;
+    
+    [UIView transitionWithView:self duration:0.2f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [self redrawBitmap];
+                    }
+                    completion:nil];
+}
+
 - (void)clearDrawing
 {
     self.cachedImage = nil;
-    
-    [self.pathsArray removeAllObjects];
+	
+    [self.strokeHistoryArray removeAllObjects];
     
     self.bezierPath = nil;
     self.pointsCounter = 0;
@@ -98,6 +122,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     self.lastWidth = self.strokeWidth;
     self.pointsCounter = 0;
     [self.pointsArray removeAllObjects];
+    [self.strokeHistoryArray addObject:[NSMutableArray array]];
     [self.pointsArray addObject:[JotTouchPoint withPoint:touchPoint]];
 }
 
@@ -161,7 +186,8 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     if (self.cachedImage) {
         [self.cachedImage drawAtPoint:CGPointZero];
     }
-
+    
+    [[self.strokeHistoryArray lastObject] addObject:self.bezierPath];
     [self.bezierPath jotDrawBezier];
     self.bezierPath = nil;
     
@@ -169,7 +195,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
         JotTouchPoint *touchPoint = [self.pointsArray firstObject];
         touchPoint.strokeColor = self.strokeColor;
         touchPoint.strokeWidth = 1.5f * [self strokeWidthForVelocity:1.f];
-        [self.pathsArray addObject:touchPoint];
+        [self.strokeHistoryArray.lastObject addObject:touchPoint];
         [touchPoint.strokeColor setFill];
         [JotTouchBezier jotDrawBezierPoint:[touchPoint CGPointValue]
                                  withWidth:touchPoint.strokeWidth];
@@ -180,10 +206,24 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     [self setNeedsDisplay];
 }
 
+- (void)redrawBitmap
+{
+    self.cachedImage = nil;
+    
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    [self drawAllPaths];
+    
+    self.cachedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self setNeedsDisplay];
+}
+
+
 - (void)drawRect:(CGRect)rect
 {
     [self.cachedImage drawInRect:rect];
-
+    
     [self.bezierPath jotDrawBezier];
 }
 
@@ -202,7 +242,6 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 {
     if (!_bezierPath) {
         _bezierPath = [JotTouchBezier withColor:self.strokeColor];
-        [self.pathsArray addObject:_bezierPath];
         _bezierPath.constantWidth = self.constantStrokeWidth;
     }
     
@@ -241,7 +280,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
 
 - (void)drawAllPaths
 {
-    for (NSObject *path in self.pathsArray) {
+	for (NSObject *path in self.allPaths) {
         if ([path isKindOfClass:[JotTouchBezier class]]) {
             [(JotTouchBezier *)path jotDrawBezier];
         } else if ([path isKindOfClass:[JotTouchPoint class]]) {
@@ -250,6 +289,17 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
                                      withWidth:[(JotTouchPoint *)path strokeWidth]];
         }
     }
+}
+
+#pragma mark - Helpers
+
+- (NSArray *)allPaths
+{
+	NSMutableArray *all = [NSMutableArray array];
+	for (NSArray *item in self.strokeHistoryArray) {
+		[all addObjectsFromArray:item];
+	}
+	return all;
 }
 
 @end

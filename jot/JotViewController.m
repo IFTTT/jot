@@ -245,6 +245,11 @@
 
 #pragma mark - Undo
 
+- (void)undo
+{
+    [self.drawView undoLastStroke];
+}
+
 - (void)clearAll
 {
     [self clearDrawing];
