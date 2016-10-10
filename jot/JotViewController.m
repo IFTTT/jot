@@ -243,6 +243,22 @@
     }
 }
 
+#pragma mark - external draw point handlers
+-(void) startTouchAtPoint:(CGPoint) point withColor:(UIColor *) color {
+    self.drawView.strokeColor = color;
+    [self.drawView drawTouchBeganAtPoint:point];
+}
+
+-(void) moveTouchToPoint:(CGPoint) point withColor:(UIColor *) color {
+    self.drawView.strokeColor = color;
+    [self.drawView drawTouchMovedToPoint:point];
+}
+
+-(void) endTouch {
+    [self.drawView drawTouchEnded];
+}
+
+
 #pragma mark - Undo
 
 - (void)clearAll
@@ -335,6 +351,8 @@
 {
     if (self.state == JotViewStateDrawing) {
         [self.drawView drawTouchBeganAtPoint:touchPoint];
+        if([self.delegate respondsToSelector:@selector(jotViewController:touchesBeganAtPoint:color:)])
+            [self.delegate jotViewController:self touchesBeganAtPoint:touchPoint color: self.drawingColor];
     }
 }
 
@@ -342,6 +360,8 @@
 {
     if (self.state == JotViewStateDrawing) {
         [self.drawView drawTouchMovedToPoint:touchPoint];
+        if([self.delegate respondsToSelector:@selector(jotViewController:touchesMovedToPoint:color:)])
+            [self.delegate jotViewController:self touchesMovedToPoint:touchPoint color: self.drawingColor];
     }
 }
 
@@ -349,6 +369,8 @@
 {
     if (self.state == JotViewStateDrawing) {
         [self.drawView drawTouchEnded];
+        if([self.delegate respondsToSelector:@selector(jotViewControllerTouchesEnded:)])
+            [self.delegate jotViewControllerTouchesEnded:self];
     }
 }
 

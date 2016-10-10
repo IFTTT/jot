@@ -215,6 +215,12 @@ typedef NS_ENUM(NSUInteger, JotViewState){
  */
 - (UIImage *)renderImageWithScale:(CGFloat)scale onColor:(UIColor *)color;
 
+-(void) startTouchAtPoint:(CGPoint) point withColor:(UIColor *) color;
+
+-(void) moveTouchToPoint:(CGPoint) point withColor:(UIColor *) color;
+
+-(void) endTouch;
+
 @end
 
 @protocol JotViewControllerDelegate <NSObject>
@@ -228,5 +234,27 @@ typedef NS_ENUM(NSUInteger, JotViewState){
  *  @param isEditing    YES if entering edit (keyboard text entry) mode, NO if exiting edit mode
  */
 - (void)jotViewController:(JotViewController *)jotViewController isEditingText:(BOOL)isEditing;
+
+/**
+ * Called whenever the user begins a stroke in JotDrawView
+ * @param jotViewController  The  JotDrawViewController to which the delegate is associated
+ * @param point the point of the touch
+ * @param color the current stroke color
+ */
+-(void) jotViewController:(JotViewController *)jotViewController touchesBeganAtPoint:(CGPoint)point color:(UIColor *) color;
+
+/**
+ * Called whenever the user is drawing a stroke
+ * @param jotViewController  The  JotDrawViewController to which the delegate is associated
+ * @param point the point of the touch
+ * @param color the current stroke color
+ */
+-(void) jotViewController:(JotViewController *)jotViewController touchesMovedToPoint:(CGPoint)point color:(UIColor *) color;
+
+/**
+ * Called whenever the user completes a stroke
+ * @param jotViewController  The  JotDrawViewController to which the delegate is associated
+ */
+-(void) jotViewControllerTouchesEnded:(JotViewController *)jotViewController;
 
 @end
