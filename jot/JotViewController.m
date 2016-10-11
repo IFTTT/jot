@@ -24,6 +24,7 @@
 @property (nonatomic, strong) JotDrawView *drawView;
 @property (nonatomic, strong) JotTextEditView *textEditView;
 @property (nonatomic, strong) JotTextView *textView;
+@property (nonatomic, strong) NSMutableDictionary *eraseProperties;
 
 @end
 
@@ -38,6 +39,7 @@
         _textEditView.delegate = self;
         _textView = [JotTextView new];
         _drawingContainer = [JotDrawingContainer new];
+        _eraseProperties = [NSMutableDictionary dictionary];
         self.drawingContainer.delegate = self;
         
         _font = self.textView.font;
@@ -243,6 +245,22 @@
     }
 }
 
+#pragma mark - external draw point handlers
+-(void) startTouchAtPoint:(CGPoint) point withColor:(UIColor *) color {
+    self.drawView.strokeColor = color;
+    [self.drawView drawTouchBeganAtPoint:point];
+}
+
+-(void) moveTouchToPoint:(CGPoint) point withColor:(UIColor *) color {
+    self.drawView.strokeColor = color;
+    [self.drawView drawTouchMovedToPoint:point];
+}
+
+-(void) endTouch {
+    [self.drawView drawTouchEnded];
+}
+
+
 #pragma mark - Undo
 
 - (void)clearAll
@@ -260,6 +278,22 @@
 {
     self.textString = @"";
     [self.textView clearText];
+}
+
+- (void)startErasingDrawing {
+    self.eraseProperties[@"color"] = self.drawingColor;
+    self.eraseProperties[@"strokeWidth"] = @(self.drawingStrokeWidth);
+    self.eraseProperties[@"constantStrokeWidth"] = @(self.drawingConstantStrokeWidth);
+    [self setDrawingColor:[UIColor clearColor]];
+    [self setDrawingStrokeWidth:30.f];
+    [self setDrawingConstantStrokeWidth:YES];
+}
+
+- (void)endErasingDrawing {
+    [self setDrawingColor:self.eraseProperties[@"color"]];
+    [self setDrawingStrokeWidth:[self.eraseProperties[@"strokeWidth"] floatValue]];
+    [self setDrawingConstantStrokeWidth: [self.eraseProperties[@"constantStrokeWidth"] boolValue]];
+    [self.eraseProperties removeAllObjects];
 }
 
 #pragma mark - Output UIImage
@@ -335,6 +369,8 @@
 {
     if (self.state == JotViewStateDrawing) {
         [self.drawView drawTouchBeganAtPoint:touchPoint];
+        if([self.delegate respondsToSelector:@selector(jotViewController:touchesBeganAtPoint:color:)])
+            [self.delegate jotViewController:self touchesBeganAtPoint:touchPoint color: self.drawingColor];
     }
 }
 
@@ -342,6 +378,8 @@
 {
     if (self.state == JotViewStateDrawing) {
         [self.drawView drawTouchMovedToPoint:touchPoint];
+        if([self.delegate respondsToSelector:@selector(jotViewController:touchesMovedToPoint:color:)])
+            [self.delegate jotViewController:self touchesMovedToPoint:touchPoint color: self.drawingColor];
     }
 }
 
@@ -349,6 +387,8 @@
 {
     if (self.state == JotViewStateDrawing) {
         [self.drawView drawTouchEnded];
+        if([self.delegate respondsToSelector:@selector(jotViewControllerTouchesEnded:)])
+            [self.delegate jotViewControllerTouchesEnded:self];
     }
 }
 
