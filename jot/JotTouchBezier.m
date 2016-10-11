@@ -23,14 +23,14 @@ NSUInteger const kJotDrawStepsPerBezier = 300;
 
 - (void)jotDrawBezier
 {
-    if (self.constantWidth) {
+    if (self.constantWidth || [self isErasing]) {
         UIBezierPath *bezierPath = [UIBezierPath new];
         [bezierPath moveToPoint:self.startPoint];
         [bezierPath addCurveToPoint:self.endPoint controlPoint1:self.controlPoint1 controlPoint2:self.controlPoint2];
         bezierPath.lineWidth = self.startWidth;
         bezierPath.lineCapStyle = kCGLineCapRound;
         [self.strokeColor setStroke];
-        [bezierPath strokeWithBlendMode:kCGBlendModeNormal alpha:1.f];
+        [bezierPath strokeWithBlendMode:([self isErasing])?kCGBlendModeClear:kCGBlendModeNormal alpha:1.f];
     } else {
         [self.strokeColor setFill];
         
@@ -61,13 +61,17 @@ NSUInteger const kJotDrawStepsPerBezier = 300;
     }
 }
 
+- (Boolean) isErasing {
+    return [self.strokeColor isEqual: [UIColor clearColor]];
+}
+
 + (void)jotDrawBezierPoint:(CGPoint)point withWidth:(CGFloat)width
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     if (!context) {
         return;
     }
-    
+
     CGContextFillEllipseInRect(context, CGRectInset(CGRectMake(point.x, point.y, 0.f, 0.f), -width / 2.f, -width / 2.f));
 }
 
