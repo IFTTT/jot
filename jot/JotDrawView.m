@@ -205,6 +205,7 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
         [self.pathsArray addObject:_bezierPath];
         _bezierPath.constantWidth = self.constantStrokeWidth;
     }
+    _bezierPath.strokeColor = self.strokeColor;
     
     return _bezierPath;
 }
