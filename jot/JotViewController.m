@@ -17,6 +17,7 @@
 @interface JotViewController () <UIGestureRecognizerDelegate, JotTextEditViewDelegate, JotTextViewDelegate, JotDrawViewDelegate, JotDrawingContainerDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *editTextTapRecognizer;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
 @property (nonatomic, strong) UIRotationGestureRecognizer *rotationRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
@@ -74,6 +75,9 @@
         
         _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
         self.tapRecognizer.delegate = self;
+        
+        _editTextTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleEditTextTapGesture:)];
+        self.editTextTapRecognizer.delegate = self;
     }
     
     return self;
@@ -116,6 +120,8 @@
     [self.drawingContainer addGestureRecognizer:self.panRecognizer];
     [self.drawingContainer addGestureRecognizer:self.rotationRecognizer];
     [self.drawingContainer addGestureRecognizer:self.pinchRecognizer];
+    
+    [self.textEditView addGestureRecognizer:self.editTextTapRecognizer];
 }
 
 #pragma mark - Properties
@@ -340,6 +346,14 @@
 {
     if (!(self.state == JotViewStateEditingText)) {
         self.state = JotViewStateEditingText;
+    }
+}
+
+- (void)handleEditTextTapGesture:(UIGestureRecognizer *)recognizer
+{
+    if (self.state == JotViewStateEditingText) {
+        // if we're in edit mode, get out of it
+        self.state = JotViewStateText;
     }
 }
 
