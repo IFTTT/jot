@@ -9,11 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+@protocol JotDrawViewDelegate;
+
 /**
  *  Private class to handle touch drawing. Change the properties
  *  in a JotViewController instance to configure this private class.
  */
 @interface JotDrawView : UIView
+
+/**
+ *  The delegate of the JotDrawView
+ */
+@property (nonatomic, weak) id <JotDrawViewDelegate> delegate;
 
 /**
  *  Set to YES if you want the stroke width to be constant,
@@ -109,5 +116,14 @@
  *  to trigger this method.
  */
 - (UIImage *)renderDrawingWithSize:(CGSize)size;
+
+@end
+
+@protocol JotDrawViewDelegate <NSObject>
+
+/**
+ *  Called when the JotDrawView adds a new stroke
+ */
+- (void)jotDrawViewAddedStrokeHistory;
 
 @end

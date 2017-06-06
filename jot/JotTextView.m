@@ -11,6 +11,7 @@
 @interface JotTextView ()
 
 @property (nonatomic, strong) UILabel *textLabel;
+@property (nonatomic, strong) NSMutableArray *textHistoryArray;
 @property (nonatomic, strong) UIView *textEditingContainer;
 @property (nonatomic, strong) UITextView *textEditingView;
 @property (nonatomic, assign) CGAffineTransform referenceRotateTransform;
@@ -40,6 +41,10 @@
         _textColor = [UIColor whiteColor];
         _textString = @"";
         _textLabel = [UILabel new];
+        
+        _textHistoryArray = [NSMutableArray array];
+        [self.textHistoryArray addObject:_textString];
+
         if (self.fitOriginalFontSizeToViewWidth) {
             self.textLabel.numberOfLines = 0;
         }
@@ -82,9 +87,40 @@
     self.textString = @"";
 }
 
+- (void)undoLastEdit
+{
+    // the last entry in the array is the current string
+    [self.textHistoryArray removeLastObject];
+
+    if (self.textHistoryArray.count == 0) {
+        return;
+    }
+    
+    // restore to the previous text string using updateUIWithTextString, not setTextString, because we don't want to add this string to the history array
+    NSString *lastEdit = [self.textHistoryArray lastObject];
+    [self updateUIWithTextString:lastEdit];
+    
+    // inform the delegate, which will inform the TextEditView
+    if ([self.delegate respondsToSelector:@selector(jotTextViewFinishedEditingWithNewTextString:)]) {
+        [self.delegate jotTextViewFinishedEditingWithNewTextString:_textString];
+    }
+}
+
 #pragma mark - Properties
 
 - (void)setTextString:(NSString *)textString
+{
+    if (![_textString isEqualToString:textString]) {
+        [self updateUIWithTextString:textString];
+        [self.textHistoryArray addObject:textString];
+        
+        if ([self.delegate respondsToSelector:@selector(jotTextViewAddedTextHistory)]) {
+            [self.delegate jotTextViewAddedTextHistory];
+        }
+    }
+}
+
+- (void)updateUIWithTextString:(NSString *)textString
 {
     if (![_textString isEqualToString:textString]) {
         _textString = textString;

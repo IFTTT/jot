@@ -124,6 +124,10 @@ CGFloat const kJotRelativeMinStrokeWidth = 0.4f;
     [self.pointsArray removeAllObjects];
     [self.strokeHistoryArray addObject:[NSMutableArray array]];
     [self.pointsArray addObject:[JotTouchPoint withPoint:touchPoint]];
+    
+    if ([self.delegate respondsToSelector:@selector(jotDrawViewAddedStrokeHistory)]) {
+        [self.delegate jotDrawViewAddedStrokeHistory];
+    }
 }
 
 - (void)drawTouchMovedToPoint:(CGPoint)touchPoint

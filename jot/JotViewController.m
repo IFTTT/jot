@@ -14,7 +14,7 @@
 #import "UIImage+Jot.h"
 #import "JotDrawingContainer.h"
 
-@interface JotViewController () <UIGestureRecognizerDelegate, JotTextEditViewDelegate, JotDrawingContainerDelegate>
+@interface JotViewController () <UIGestureRecognizerDelegate, JotTextEditViewDelegate, JotTextViewDelegate, JotDrawViewDelegate, JotDrawingContainerDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
@@ -24,6 +24,7 @@
 @property (nonatomic, strong) JotDrawView *drawView;
 @property (nonatomic, strong) JotTextEditView *textEditView;
 @property (nonatomic, strong) JotTextView *textView;
+@property (nonatomic, strong) NSMutableArray *history;
 
 @end
 
@@ -34,9 +35,14 @@
     if ((self = [super init])) {
         
         _drawView = [JotDrawView new];
+        _drawView.delegate = self;
+        
         _textEditView = [JotTextEditView new];
         _textEditView.delegate = self;
+        
         _textView = [JotTextView new];
+        _textView.delegate = self;
+        
         _drawingContainer = [JotDrawingContainer new];
         self.drawingContainer.delegate = self;
         
@@ -54,6 +60,8 @@
         _textEditingInsets = self.textEditView.textEditingInsets;
         _initialTextInsets = self.textView.initialTextInsets;
         _state = JotViewStateDefault;
+        
+        _history = [NSMutableArray array];
         
         _pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchOrRotateGesture:)];
         self.pinchRecognizer.delegate = self;
@@ -247,7 +255,18 @@
 
 - (void)undo
 {
-    [self.drawView undoLastStroke];
+    if (self.history.count == 0) {
+        return;
+    }
+    
+    BOOL lastEditWasStroke = [[self.history lastObject] boolValue];
+    if (lastEditWasStroke == YES) {
+        [self.drawView undoLastStroke];
+    } else {
+        [self.textView undoLastEdit];
+    }
+    
+    [self.history removeLastObject];
 }
 
 - (void)clearAll
@@ -385,6 +404,26 @@
     if ([self.delegate respondsToSelector:@selector(jotViewController:isEditingText:)]) {
         [self.delegate jotViewController:self isEditingText:NO];
     }
+}
+
+#pragma mark - JotTextView Delegate
+
+- (void)jotTextViewFinishedEditingWithNewTextString:(NSString *)textString
+{
+    // this calls setTextString
+    self.textString = textString;
+}
+
+- (void)jotTextViewAddedTextHistory
+{
+    [self.history addObject:[NSNumber numberWithBool:NO]];
+}
+
+#pragma mark - JotDrawView Delegate
+
+- (void)jotDrawViewAddedStrokeHistory
+{
+    [self.history addObject:[NSNumber numberWithBool:YES]];
 }
 
 @end
