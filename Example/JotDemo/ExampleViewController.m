@@ -34,7 +34,7 @@ NSString * const kSaveImageName = @"";
         _jotViewController = [JotViewController new];
         
         self.jotViewController.delegate = self;
-        self.jotViewController.state = JotViewStateDefault;
+        self.jotViewController.state = JotViewStateDrawing;
         self.jotViewController.textColor = [UIColor blackColor];
         self.jotViewController.font = [UIFont boldSystemFontOfSize:64.f];
         self.jotViewController.fontSize = 64.f;
@@ -123,7 +123,7 @@ NSString * const kSaveImageName = @"";
 
 - (void)clearButtonAction
 {
-    [self.jotViewController undo];
+    [self.jotViewController clearAll];
 }
 
 - (void)saveButtonAction
