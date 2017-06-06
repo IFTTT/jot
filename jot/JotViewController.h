@@ -229,9 +229,17 @@ typedef NS_ENUM(NSUInteger, JotViewState){
 /**
  *  Called whenever the JotViewController begins or ends text editing (keyboard entry) mode.
  *
- *  @param jotViewController The draw text view controller
+ *  @param jotViewController The jot view controller
  *  @param isEditing    YES if entering edit (keyboard text entry) mode, NO if exiting edit mode
  */
 - (void)jotViewController:(JotViewController *)jotViewController isEditingText:(BOOL)isEditing;
 
+
+/**
+ *  Called whenever the JotViewController adds or removes something from its history.
+ *
+ *  @param jotViewController The jot view controller
+ *  @param history           The history array
+ */
+- (void)jotViewController:(JotViewController *)jotViewController editedHistory:(NSMutableArray *)history;
 @end

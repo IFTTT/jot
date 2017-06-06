@@ -25,7 +25,7 @@
 @property (nonatomic, strong) JotDrawView *drawView;
 @property (nonatomic, strong) JotTextEditView *textEditView;
 @property (nonatomic, strong) JotTextView *textView;
-@property (nonatomic, strong) NSMutableArray *history;
+@property (nonatomic, strong) NSMutableArray *lastEditWasStrokeArray;
 
 @end
 
@@ -62,7 +62,7 @@
         _initialTextInsets = self.textView.initialTextInsets;
         _state = JotViewStateDefault;
         
-        _history = [NSMutableArray array];
+        _lastEditWasStrokeArray = [NSMutableArray array];
         
         _pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchOrRotateGesture:)];
         self.pinchRecognizer.delegate = self;
@@ -261,18 +261,23 @@
 
 - (void)undo
 {
-    if (self.history.count == 0) {
+    if (self.lastEditWasStrokeArray.count == 0) {
         return;
     }
     
-    BOOL lastEditWasStroke = [[self.history lastObject] boolValue];
+    // depending on the last edit type, perform the corresponding undo action
+    BOOL lastEditWasStroke = [[self.lastEditWasStrokeArray lastObject] boolValue];
     if (lastEditWasStroke == YES) {
         [self.drawView undoLastStroke];
     } else {
         [self.textView undoLastEdit];
     }
     
-    [self.history removeLastObject];
+    // remove this edit from our history and inform the delegate that history was edited
+    [self.lastEditWasStrokeArray removeLastObject];
+    if ([self.delegate respondsToSelector:@selector(jotViewController:editedHistory:)]) {
+        [self.delegate jotViewController:self editedHistory:self.lastEditWasStrokeArray];
+    }
 }
 
 - (void)clearAll
@@ -430,14 +435,26 @@
 
 - (void)jotTextViewAddedTextHistory
 {
-    [self.history addObject:[NSNumber numberWithBool:NO]];
+    // add a "false" edit to our history
+    [self.lastEditWasStrokeArray addObject:[NSNumber numberWithBool:NO]];
+    
+    // inform the delegate that history was edited
+    if ([self.delegate respondsToSelector:@selector(jotViewController:editedHistory:)]) {
+        [self.delegate jotViewController:self editedHistory:self.lastEditWasStrokeArray];
+    }
 }
 
 #pragma mark - JotDrawView Delegate
 
 - (void)jotDrawViewAddedStrokeHistory
 {
-    [self.history addObject:[NSNumber numberWithBool:YES]];
+    // add a "true" edit to our history
+    [self.lastEditWasStrokeArray addObject:[NSNumber numberWithBool:YES]];
+    
+    // inform the delegate that history was edited
+    if ([self.delegate respondsToSelector:@selector(jotViewController:editedHistory:)]) {
+        [self.delegate jotViewController:self editedHistory:self.lastEditWasStrokeArray];
+    }
 }
 
 @end
