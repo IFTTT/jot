@@ -14,9 +14,10 @@
 #import "UIImage+Jot.h"
 #import "JotDrawingContainer.h"
 
-@interface JotViewController () <UIGestureRecognizerDelegate, JotTextEditViewDelegate, JotDrawingContainerDelegate>
+@interface JotViewController () <UIGestureRecognizerDelegate, JotTextEditViewDelegate, JotTextViewDelegate, JotDrawViewDelegate, JotDrawingContainerDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *editTextTapRecognizer;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
 @property (nonatomic, strong) UIRotationGestureRecognizer *rotationRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) JotDrawView *drawView;
 @property (nonatomic, strong) JotTextEditView *textEditView;
 @property (nonatomic, strong) JotTextView *textView;
+@property (nonatomic, strong) NSMutableArray *lastEditWasStrokeArray;
 
 @end
 
@@ -34,9 +36,14 @@
     if ((self = [super init])) {
         
         _drawView = [JotDrawView new];
+        _drawView.delegate = self;
+        
         _textEditView = [JotTextEditView new];
         _textEditView.delegate = self;
+        
         _textView = [JotTextView new];
+        _textView.delegate = self;
+        
         _drawingContainer = [JotDrawingContainer new];
         self.drawingContainer.delegate = self;
         
@@ -55,6 +62,8 @@
         _initialTextInsets = self.textView.initialTextInsets;
         _state = JotViewStateDefault;
         
+        _lastEditWasStrokeArray = [NSMutableArray array];
+        
         _pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchOrRotateGesture:)];
         self.pinchRecognizer.delegate = self;
         
@@ -66,6 +75,9 @@
         
         _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
         self.tapRecognizer.delegate = self;
+        
+        _editTextTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleEditTextTapGesture:)];
+        self.editTextTapRecognizer.delegate = self;
     }
     
     return self;
@@ -108,6 +120,8 @@
     [self.drawingContainer addGestureRecognizer:self.panRecognizer];
     [self.drawingContainer addGestureRecognizer:self.rotationRecognizer];
     [self.drawingContainer addGestureRecognizer:self.pinchRecognizer];
+    
+    [self.textEditView addGestureRecognizer:self.editTextTapRecognizer];
 }
 
 #pragma mark - Properties
@@ -245,6 +259,27 @@
 
 #pragma mark - Undo
 
+- (void)undo
+{
+    if (self.lastEditWasStrokeArray.count == 0) {
+        return;
+    }
+    
+    // depending on the last edit type, perform the corresponding undo action
+    BOOL lastEditWasStroke = [[self.lastEditWasStrokeArray lastObject] boolValue];
+    if (lastEditWasStroke == YES) {
+        [self.drawView undoLastStroke];
+    } else {
+        [self.textView undoLastEdit];
+    }
+    
+    // remove this edit from our history and inform the delegate that history was edited
+    [self.lastEditWasStrokeArray removeLastObject];
+    if ([self.delegate respondsToSelector:@selector(jotViewController:editedHistory:)]) {
+        [self.delegate jotViewController:self editedHistory:self.lastEditWasStrokeArray];
+    }
+}
+
 - (void)clearAll
 {
     [self clearDrawing];
@@ -319,6 +354,14 @@
     }
 }
 
+- (void)handleEditTextTapGesture:(UIGestureRecognizer *)recognizer
+{
+    if (self.state == JotViewStateEditingText) {
+        // if we're in edit mode, get out of it
+        self.state = JotViewStateText;
+    }
+}
+
 - (void)handlePanGesture:(UIGestureRecognizer *)recognizer
 {
     [self.textView handlePanGesture:recognizer];
@@ -379,6 +422,38 @@
     
     if ([self.delegate respondsToSelector:@selector(jotViewController:isEditingText:)]) {
         [self.delegate jotViewController:self isEditingText:NO];
+    }
+}
+
+#pragma mark - JotTextView Delegate
+
+- (void)jotTextViewFinishedEditingWithNewTextString:(NSString *)textString
+{
+    // this calls setTextString
+    self.textString = textString;
+}
+
+- (void)jotTextViewAddedTextHistory
+{
+    // add a "false" edit to our history
+    [self.lastEditWasStrokeArray addObject:[NSNumber numberWithBool:NO]];
+    
+    // inform the delegate that history was edited
+    if ([self.delegate respondsToSelector:@selector(jotViewController:editedHistory:)]) {
+        [self.delegate jotViewController:self editedHistory:self.lastEditWasStrokeArray];
+    }
+}
+
+#pragma mark - JotDrawView Delegate
+
+- (void)jotDrawViewAddedStrokeHistory
+{
+    // add a "true" edit to our history
+    [self.lastEditWasStrokeArray addObject:[NSNumber numberWithBool:YES]];
+    
+    // inform the delegate that history was edited
+    if ([self.delegate respondsToSelector:@selector(jotViewController:editedHistory:)]) {
+        [self.delegate jotViewController:self editedHistory:self.lastEditWasStrokeArray];
     }
 }
 

@@ -9,12 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+@protocol JotTextViewDelegate;
+
 /**
  *  Private class to handle text display and gesture interactions.
  *  Change the properties in a JotViewController instance to 
  *  configure this private class.
  */
 @interface JotTextView : UIView
+
+/**
+ *  The delegate of the JotTextView */
+@property (nonatomic, weak) id <JotTextViewDelegate> delegate;
 
 /**
  *  The text string the JotTextView is currently displaying.
@@ -91,6 +97,13 @@
  */
 - (void)clearText;
 
+#pragma mark - Undo
+
+/**
+ *  Undos last edit.
+ */
+- (void)undoLastEdit;
+
 /**
  *  Overlays the text on the given background image.
  *
@@ -134,5 +147,21 @@
  *  internal pinch and rotation gesture recognizers.
  */
 - (void)handlePinchOrRotateGesture:(UIGestureRecognizer *)recognizer;
+
+@end
+
+@protocol JotTextViewDelegate <NSObject>
+
+/**
+ *  Called when the JotTextView edits text via the undo functionality
+ *
+ *  @param textString    The new text string after editing
+ */
+- (void)jotTextViewFinishedEditingWithNewTextString:(NSString *)textString;
+
+/**
+ *  Called when the JotTextView adds a new text history
+ */
+- (void)jotTextViewAddedTextHistory;
 
 @end
