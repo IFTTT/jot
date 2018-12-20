@@ -82,6 +82,13 @@
     self.textString = @"";
 }
 
+-(void)resetText{
+    [self setFontSize:60.f];
+    [self setScale:1.f];
+    [self sizeLabel];
+    self.textLabel.center = CGPointMake(CGRectGetMidX(self.bounds),CGRectGetMidY(self.bounds));
+}
+
 #pragma mark - Properties
 
 - (void)setTextString:(NSString *)textString
