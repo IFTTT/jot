@@ -245,6 +245,10 @@
 
 #pragma mark - Undo
 
+- (void)resetText {
+    [self.textView resetText];
+}
+
 - (void)clearAll
 {
     [self clearDrawing];

@@ -161,6 +161,11 @@ typedef NS_ENUM(NSUInteger, JotViewState){
 @property (nonatomic, strong, readonly) JotDrawingContainer *drawingContainer;
 
 /**
+ *  Resets the text position, allowing you to start manipulating from scratch.
+ */
+-(void)resetText;
+
+/**
  *  Clears all paths from the drawing in and sets the text to an empty string, giving a blank slate.
  */
 - (void)clearAll;

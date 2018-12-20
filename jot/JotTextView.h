@@ -92,6 +92,11 @@
 - (void)clearText;
 
 /**
+ *  Resets the text position, allowing you to start manipulating from scratch.
+ */
+- (void)resetText;
+
+/**
  *  Overlays the text on the given background image.
  *
  *  @param image The background image to render text on top of.
